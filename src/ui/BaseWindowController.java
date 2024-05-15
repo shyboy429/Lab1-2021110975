@@ -96,8 +96,6 @@ public class BaseWindowController {
                 String filePath = file.getAbsolutePath(); // 获取用户选择的文件路径
                 Graph graph = GraphGenerate.genGraph(filePath); // 使用选择的文件路径生成图
                 this.graph = graph;
-//                GraphVisualizer printer = new GraphVisualizer(graph);
-//                this.printer = printer;
                 showButton.setDisable(false);
             } catch (FileNotFoundException err) {
                 err.printStackTrace();
