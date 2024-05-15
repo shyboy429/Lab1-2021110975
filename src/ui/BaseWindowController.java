@@ -173,26 +173,7 @@ public class BaseWindowController {
 
     @FXML
     protected void handleShowButtonClicked(MouseEvent e) {
-
         GraphVisualizer.showDirectGraph(this.graph);
-//        GraphVisualizer printer = new GraphVisualizer(graph,null);
-//        this.printer = printer;
-//        // 创建一个 ImageView 对象用于展示图片
-//        ImageView exportedImage = new ImageView();
-//
-//        // 加载图片
-//        Image image = new Image("file:C:\\Users\\water_boy\\Desktop\\SELAB1\\src\\mid.svg");
-//
-//        // 设置图片到 ImageView
-//        exportedImage.setImage(image);
-//
-//        // 将 ImageView 添加到布局中
-//        // 假设 canvasPane 是你的 AnchorPane 对象
-//        canvasPane.getChildren().add(exportedImage);
-//        //canvasPane.getChildren().clear();
-//
-//        //展示有向图
-//        saveMenuItem.setDisable(false);        //有向图被画出后，“另存为”菜单项可用
     }
     //查询桥接词
     @FXML
