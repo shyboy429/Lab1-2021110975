@@ -9,6 +9,7 @@ import com.mxgraph.view.mxGraph;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -188,7 +189,7 @@ public class GraphVisualizer extends JFrame {
     private void saveGraphAsImage(mxGraphComponent graphComponent) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Save Graph as Image");
-        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("PNG Image", "png"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("PNG Image", "png"));
         // 设置初始路径为 C:\Users\86139\Desktop
         fileChooser.setCurrentDirectory(new File("C:\\Users\\86139\\Desktop"));
 

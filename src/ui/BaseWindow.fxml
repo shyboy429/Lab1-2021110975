@@ -8,24 +8,32 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Background?>
+<?import javafx.scene.layout.BackgroundImage?>
+<?import javafx.scene.layout.BackgroundPosition?>
+<?import javafx.scene.layout.BackgroundRepeat?>
+<?import javafx.scene.layout.BackgroundSize?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.BackgroundImage?>
 
 <VBox stylesheets="@BaseWindow.css" maxHeight="-Infinity" maxWidth="800" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.BaseWindowController" alignment="CENTER">
+
     <children>
         <MenuBar fx:id="menuBar">
             <menus>
                 <Menu mnemonicParsing="false" text="文件">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#handleOpenMenuItemClicked" text="打开" />
-                        <MenuItem fx:id="saveMenuItem" mnemonicParsing="false" onAction="#handleSaveMenuItemClicked" text="另存为" />
                         <MenuItem mnemonicParsing="false" onAction="#handleCloseMenuItemClicked" text="关闭" />
                     </items>
                 </Menu>
@@ -69,7 +77,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-
+                                        <Button fx:id="textButton" mnemonicParsing="false" onMouseClicked="#handdleTextButtonClicked" prefHeight="40.0" prefWidth="120.0" text="展示源文本" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                         <Button fx:id="showButton" mnemonicParsing="false" onMouseClicked="#handleShowButtonClicked" prefHeight="40.0" prefWidth="120.0" text="展示有向图" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                         <Button fx:id="queryButton" mnemonicParsing="false" onMouseClicked="#handleQueryButtonClicked" prefHeight="40.0" prefWidth="120.0" text="查询桥接词" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                         <Button fx:id="generateButton" mnemonicParsing="false" onMouseClicked="#handleGenerateButtonClicked" prefHeight="40.0" prefWidth="120.0" text="生成新文本" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />

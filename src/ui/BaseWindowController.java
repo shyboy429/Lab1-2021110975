@@ -19,11 +19,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -44,9 +43,6 @@ public class BaseWindowController {
     @FXML
     private MenuBar menuBar;                //菜单栏
     @FXML
-    private MenuItem saveMenuItem;        //“另存为”菜单项
-
-    @FXML
     private Button textButton;            //“查看源文本”按钮
     @FXML
     private Button showButton;            //“展示有向图”按钮
@@ -59,10 +55,6 @@ public class BaseWindowController {
     @FXML
     private Button walkButton;            //“随机游走”按钮
 
-    @FXML
-    private ScrollPane canvasContainer;    //画布面板的容器面板
-    @FXML
-    private AnchorPane canvasPane;        //画布面板，用于画有向图
     @FXML
     private TextArea console;                //控制台，用于显示各种信息
     @FXML
@@ -96,66 +88,18 @@ public class BaseWindowController {
                 String filePath = file.getAbsolutePath(); // 获取用户选择的文件路径
                 Graph graph = GraphGenerate.genGraph(filePath); // 使用选择的文件路径生成图
                 this.graph = graph;
-                showButton.setDisable(false);
+                //showButton.setDisable(false);
             } catch (FileNotFoundException err) {
                 err.printStackTrace();
             }
             //成功生成有向图后，各功能控制按钮可用
             if (graph != null) {
+                textButton.setDisable(false);
                 showButton.setDisable(false);
                 queryButton.setDisable(false);
                 generateButton.setDisable(false);
                 pathButton.setDisable(false);
                 walkButton.setDisable(false);
-            }
-        }
-    }
-
-    /**
-     * “另存为”菜单项被点击时的事件处理方法
-     */
-    @FXML
-    protected void handleSaveMenuItemClicked(ActionEvent e) {
-        Stage stage = (Stage) menuBar.getScene().getWindow();//文件另存为窗口
-        FileChooser fileChooser = new FileChooser();        //文件另存为
-
-        fileChooser.setTitle("保存图片");    //设置窗口标题
-        fileChooser.setInitialDirectory(new File(System.getProperty("C:\\Users\\86139\\Desktop")));        //设置初始路径
-        //设置文件格式过滤器
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("PNG图像", "*.png"),
-                new FileChooser.ExtensionFilter("JPG图像", "*.jpg"),
-                new FileChooser.ExtensionFilter("GIF图像", "*.gif"));
-        File file = fileChooser.showSaveDialog(stage);    //以“另存为模式”打开窗口，并使用file记录选择保存的文件对象
-        if (file != null) {
-            String name = file.getName();    //获取文件保存路径
-            String extendName = name.substring(name.lastIndexOf('.') + 1);    //获取文件拓展名
-            WritableImage image = new WritableImage((int) canvasPane.getWidth(), (int) canvasPane.getHeight());
-            //初始化可写入图片
-            try {
-                //根据文件拓展名选择不同的图片保存格式
-                switch (extendName) {
-                    case "png":
-                        SnapshotParameters spPNG = new SnapshotParameters();
-                        spPNG.setFill(Color.WHITE);    //设置填充色
-                        //以png格式将图片写入文件
-                        ImageIO.write(SwingFXUtils.fromFXImage(canvasPane.snapshot(spPNG, image), null), "png", file);
-                        break;
-                    case "jpg":
-                        SnapshotParameters spJPG = new SnapshotParameters();
-                        spJPG.setFill(Color.WHITE);
-                        ImageIO.write(SwingFXUtils.fromFXImage(canvasPane.snapshot(spJPG, image), null), "jpg", file);
-                        break;
-                    case "gif":
-                        SnapshotParameters spGIF = new SnapshotParameters();
-                        spGIF.setFill(Color.WHITE);
-                        ImageIO.write(SwingFXUtils.fromFXImage(canvasPane.snapshot(spGIF, image), null), "gif", file);
-                        break;
-                    default:
-                        break;
-                }
-            } catch (IOException err) {
-                err.printStackTrace();
             }
         }
     }
@@ -168,7 +112,8 @@ public class BaseWindowController {
         Stage stage = (Stage) menuBar.getScene().getWindow();    //获取主窗口
         stage.close();    //关闭主窗口
     }
-
+    @FXML
+    protected void handdleTextButtonClicked (MouseEvent e){console.setText(this.content);}
     @FXML
     protected void handleShowButtonClicked(MouseEvent e) {
         GraphVisualizer.showDirectGraph(this.graph);
@@ -183,12 +128,14 @@ public class BaseWindowController {
         TextField word2TF = (TextField)loader.getNamespace().get("word2TextField");
         Button returnBT = (Button)loader.getNamespace().get("returnButton");
         Button yesBT = (Button)loader.getNamespace().get("yesButton");
+        stackPane.getChildren().remove(prePane);
+        stackPane.getChildren().add(pane);
         //“返回”按钮被点击时，重新显示控制按钮面板
         returnBT.setOnMouseClicked(event -> {
             stackPane.getChildren().remove(pane);
             stackPane.getChildren().add(prePane);
         });
-        //“确定”按钮被点击时，求最短路径并显示
+        //“确定”按钮被点击时，查询桥接词并显示
         yesBT.setOnMouseClicked(event -> {
 
             String word1 = word1TF.getText().trim();
@@ -206,8 +153,7 @@ public class BaseWindowController {
 
         });
 
-        stackPane.getChildren().remove(prePane);
-        stackPane.getChildren().add(pane);
+
     }
     //生成新文本
     @FXML
@@ -227,19 +173,14 @@ public class BaseWindowController {
         yesBT.setOnMouseClicked(event -> {
 
             String word1 = word1TF.getText().trim();
-
-
             Bridge bri = new Bridge(this.graph);
             String result = bri.generateNewText(word1);
 
             console.setText(result);
 
         });
-
         stackPane.getChildren().remove(prePane);
         stackPane.getChildren().add(pane);
-
-
     }
     //最短路径
     @FXML
