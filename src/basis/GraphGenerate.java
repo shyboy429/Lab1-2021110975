@@ -43,11 +43,12 @@ public class GraphGenerate {
             // 读取输入文件内容并处理
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                // 将标点符号替换为空格，非字母字符忽略
+                // 将标点符号替换为空格，非字母字符忽略，转换为小写
                 String processedLine1 = line.replaceAll("[^a-zA-Z ,.!$%:]", "");
                 String processedLine2 = processedLine1.replaceAll("[,.!$%:]", " ");
+                String processedLine3 = processedLine2.toLowerCase();
                 // 将处理后的行写入输出文件
-                bufferedWriter.write(processedLine2);
+                bufferedWriter.write(processedLine3);
                 bufferedWriter.newLine(); // 写入换行符
             }
             // 关闭流

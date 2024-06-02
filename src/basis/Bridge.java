@@ -30,6 +30,15 @@ public class Bridge {
     }
 
     public String queryBridgeWords(String word1, String word2) {
+        if(word1 == null && word2 == null){
+            return "word1 and word2 are null!";
+        }
+        if(word1 == null){
+            return "word1 is null!";
+        }
+        if(word2 == null){
+            return "word2 is null!";
+        }
         ArrayList<Vertex> vertices = graph.getVertices();
         boolean word1Found = false;
         boolean word2Found = false;

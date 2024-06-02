@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.*;
 
 import javax.imageio.ImageIO;
+
 import basis.ShortestPath;
 import basis.Bridge;
 
@@ -63,7 +64,7 @@ public class BaseWindowController {
 
     private File dataFile;                        //源文本文件对象
 
-
+    private String filepath;
     /**
      * “打开”菜单项被点击时的事件处理方法
      */
@@ -87,6 +88,7 @@ public class BaseWindowController {
                 console.setText(content); // 将内容显示到控制台
                 String filePath = file.getAbsolutePath(); // 获取用户选择的文件路径
                 Graph graph = GraphGenerate.genGraph(filePath); // 使用选择的文件路径生成图
+                this.filepath = filePath;
                 this.graph = graph;
                 //showButton.setDisable(false);
             } catch (FileNotFoundException err) {
@@ -112,22 +114,33 @@ public class BaseWindowController {
         Stage stage = (Stage) menuBar.getScene().getWindow();    //获取主窗口
         stage.close();    //关闭主窗口
     }
+
     @FXML
-    protected void handdleTextButtonClicked (MouseEvent e){console.setText(this.content);}
+    protected void handdleTextButtonClicked(MouseEvent e) {
+        String filepath = this.filepath+".txt";
+        try (Scanner scanner = new Scanner(new File(filepath))) {
+            this.content = scanner.useDelimiter("\\Z").next();
+        } catch (FileNotFoundException err) {
+            err.printStackTrace();
+        }
+        console.setText(this.content);
+    }
+
     @FXML
     protected void handleShowButtonClicked(MouseEvent e) {
         GraphVisualizer.showDirectGraph(this.graph);
     }
+
     //查询桥接词
     @FXML
     protected void handleQueryButtonClicked(MouseEvent e) throws Exception {
-        GridPane prePane = (GridPane)stackPane.getChildren().get(0);
+        GridPane prePane = (GridPane) stackPane.getChildren().get(0);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("PathPane.fxml"));
         GridPane pane = loader.load();
-        TextField word1TF = (TextField)loader.getNamespace().get("word1TextField");
-        TextField word2TF = (TextField)loader.getNamespace().get("word2TextField");
-        Button returnBT = (Button)loader.getNamespace().get("returnButton");
-        Button yesBT = (Button)loader.getNamespace().get("yesButton");
+        TextField word1TF = (TextField) loader.getNamespace().get("word1TextField");
+        TextField word2TF = (TextField) loader.getNamespace().get("word2TextField");
+        Button returnBT = (Button) loader.getNamespace().get("returnButton");
+        Button yesBT = (Button) loader.getNamespace().get("yesButton");
         stackPane.getChildren().remove(prePane);
         stackPane.getChildren().add(pane);
         //“返回”按钮被点击时，重新显示控制按钮面板
@@ -140,14 +153,14 @@ public class BaseWindowController {
 
             String word1 = word1TF.getText().trim();
             String word2 = word2TF.getText().trim();
-            if(word1.equals("")){
+            if (word1.equals("")) {
                 word1 = null;
             }
-            if(word2.equals("")){
+            if (word2.equals("")) {
                 word2 = null;
             }
             Bridge bri = new Bridge(this.graph);
-            String result = bri.queryBridgeWords(word1,word2);
+            String result = bri.queryBridgeWords(word1, word2);
 
             console.setText(result);
 
@@ -155,15 +168,16 @@ public class BaseWindowController {
 
 
     }
+
     //生成新文本
     @FXML
     protected void handleGenerateButtonClicked(MouseEvent e) throws Exception {
-        GridPane prePane = (GridPane)stackPane.getChildren().get(0);
+        GridPane prePane = (GridPane) stackPane.getChildren().get(0);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("gentext.fxml"));
         GridPane pane = loader.load();
-        TextField word1TF = (TextField)loader.getNamespace().get("word1TextField");
-        Button returnBT = (Button)loader.getNamespace().get("returnButton");
-        Button yesBT = (Button)loader.getNamespace().get("yesButton");
+        TextField word1TF = (TextField) loader.getNamespace().get("word1TextField");
+        Button returnBT = (Button) loader.getNamespace().get("returnButton");
+        Button yesBT = (Button) loader.getNamespace().get("yesButton");
         //“返回”按钮被点击时，重新显示控制按钮面板
         returnBT.setOnMouseClicked(event -> {
             stackPane.getChildren().remove(pane);
@@ -182,16 +196,17 @@ public class BaseWindowController {
         stackPane.getChildren().remove(prePane);
         stackPane.getChildren().add(pane);
     }
+
     //最短路径
     @FXML
     protected void handlePathButtonClicked(MouseEvent e) throws Exception {
-        GridPane prePane = (GridPane)stackPane.getChildren().get(0);
+        GridPane prePane = (GridPane) stackPane.getChildren().get(0);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("PathPane.fxml"));
         GridPane pane = loader.load();
-        TextField word1TF = (TextField)loader.getNamespace().get("word1TextField");
-        TextField word2TF = (TextField)loader.getNamespace().get("word2TextField");
-        Button returnBT = (Button)loader.getNamespace().get("returnButton");
-        Button yesBT = (Button)loader.getNamespace().get("yesButton");
+        TextField word1TF = (TextField) loader.getNamespace().get("word1TextField");
+        TextField word2TF = (TextField) loader.getNamespace().get("word2TextField");
+        Button returnBT = (Button) loader.getNamespace().get("returnButton");
+        Button yesBT = (Button) loader.getNamespace().get("yesButton");
         //“返回”按钮被点击时，重新显示控制按钮面板
         returnBT.setOnMouseClicked(event -> {
             stackPane.getChildren().remove(pane);
@@ -202,19 +217,24 @@ public class BaseWindowController {
 
             String word1 = word1TF.getText().trim();
             String word2 = word2TF.getText().trim();
-            if(word1.equals("")){
+            if (word1.equals("")) {
                 word1 = null;
             }
-            if(word2.equals("")){
+            if (word2.equals("")) {
                 word2 = null;
             }
             ShortestPath sp = new ShortestPath(this.graph);
-            String result = sp.calcShortestPath(word1,word2);
+            String result = sp.calcShortestPath(word1, word2);
 
             console.setText(result);
             // 按照换行符分割每一行
             String[] lines = result.split("\n");
-
+            String substring = "->";
+            boolean contains = lines[0].contains(substring);
+            if (contains==false)
+            {
+                return;
+            }
             // 创建一个二维数组列表
             List<List<String>> twoDimensionalArray = new ArrayList<>();
             // 遍历每一行，按照'->'分割，并将结果添加到二维数组列表中
@@ -226,8 +246,9 @@ public class BaseWindowController {
                 }
                 twoDimensionalArray.add(row);
             }
-
-            GraphVisualizer printer = new GraphVisualizer(graph,twoDimensionalArray);
+            if (word2 != null) {
+                GraphVisualizer printer = new GraphVisualizer(graph, twoDimensionalArray);
+            }
         });
 
         stackPane.getChildren().remove(prePane);

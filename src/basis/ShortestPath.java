@@ -31,8 +31,12 @@ public class ShortestPath {
     public String calcShortestPath(String word1, String word2) {
         ArrayList<Vertex> vertices = graph.getVertices();
         if (word1 == null && word2 == null) {
-            return "无效的起点和终点";
+            return "Invalid start and end points!";
         } else if (word1 == null) {
+            Vertex word = getVertexByName(vertices, word2);
+            if(word == null){
+                return "There is no such vertex in the graph.";
+            }
             StringBuilder word2ToAllPath = new StringBuilder();
             for (Vertex v : vertices) {
                 if (!v.getName().equals(word2)) {
@@ -43,6 +47,10 @@ public class ShortestPath {
             word2ToAllPath.delete(word2ToAllPath.length() - 2, word2ToAllPath.length());
             return word2ToAllPath.toString();
         } else if (word2 == null) {
+            Vertex word = getVertexByName(vertices, word1);
+            if(word == null){
+                return "There is no such vertex in the graph.";
+            }
             StringBuilder word1ToAllPath = new StringBuilder();
             for (Vertex v : vertices) {
                 if (!v.getName().equals(word1)) {
@@ -56,6 +64,15 @@ public class ShortestPath {
         // 获取起点和终点节点对象
         Vertex start = getVertexByName(vertices, word1);
         Vertex end = getVertexByName(vertices, word2);
+        if(start == null && end == null){
+            return "There is no such two vertex in the graph.";
+        }
+        if(start == null){
+            return "There is no such start vertex in the graph.";
+        }
+        if(end == null){
+            return "There is no such end vertex in the graph.";
+        }
         // Dijkstra 算法初始化
         Map<Vertex, Integer> dist = new HashMap<>();
         Map<Vertex, List<Vertex>> prevs = new HashMap<>();
@@ -99,6 +116,9 @@ public class ShortestPath {
         //构建所有最短路径字符串
         Set<String> paths = new HashSet<>();
         buildShortestPaths(start, end, new Stack<>(), prevs, paths);
+        if(paths.isEmpty()){
+            return "It is not possible to get from " + word1 + " to " + word2 + "!";
+        }
         Set<String> reversedPaths = reversePathStrings(paths);
         return String.join("\n", reversedPaths);
     }

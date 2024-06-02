@@ -27,21 +27,21 @@ public class Graph {
 
     public void addVertex(String name) {
         for (Vertex v : vertices) {
-            if (v.getName().equals(name)) {
+            if (v.getName().equalsIgnoreCase(name)) {
                 return;
             }
         }
-        vertices.add(new Vertex(name));
+        vertices.add(new Vertex(name.toLowerCase()));
     }
 
     public void addEdge(String preName, String curName) {
         Vertex pre = new Vertex();
         Vertex cur = new Vertex();
         for (Vertex v : vertices) {
-            if (v.getName().equals(preName)) {
+            if (v.getName().equalsIgnoreCase(preName)) {
                 pre = v;
             }
-            if (v.getName().equals(curName)) {
+            if (v.getName().equalsIgnoreCase(curName)) {
                 cur = v;
             }
         }

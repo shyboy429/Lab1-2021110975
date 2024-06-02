@@ -1,20 +1,10 @@
 package ui;
-import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.image.Image;
 
 public class MainApplication extends Application {
     @Override
