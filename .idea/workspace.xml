@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="004d8679-bf32-43f7-826c-455ebd2929d3" name="Changes" comment="" />
+    <list default="true" id="004d8679-bf32-43f7-826c-455ebd2929d3" name="Changes" comment="Lab1最终版">
+      <change beforePath="$PROJECT_DIR$/src/basis/Bridge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/Bridge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basis/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basis/GraphGenerate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/GraphGenerate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basis/GraphVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/GraphVisualizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basis/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basis/RandomWalk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/RandomWalk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basis/ShortestPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/ShortestPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basis/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/Vertex.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +26,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -24,6 +36,7 @@
     <option name="delegateBuildToMaven" value="true" />
   </component>
   <component name="ProjectId" id="2gPBQm5nsWEH8LU4GUGrh9S3Bqw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -120,5 +133,20 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -5,135 +5,196 @@ import java.util.ArrayList;
 /**
  * ClassName:basis.Bridge
  * Package:PACKAGE_NAME
- * Description:
+ * Description: This class represents a bridge that connects words in a graph.
  *
- * @date:2024/5/13 20:36
- * @author:shyboy
+ * @author shyboy
+ * @version 1.0
+ * @date: 2024/5/13 20:36
  */
 public class Bridge {
-    private Graph graph;
 
-    public Bridge() {
-        this.graph = new Graph();
+  /**
+   * Represents the graph that connects words.
+   */
+  private Graph graph;
+
+  /**
+   * Constructs a Bridge object with an empty graph.
+   */
+  public Bridge() {
+    this.graph = new Graph();
+  }
+
+  /**
+   * Constructs a Bridge object with the given graph.
+   *
+   * @param graph the graph that connects words.
+   */
+  public Bridge(Graph graph) {
+    this.graph = graph;
+  }
+
+  /**
+   * Returns the graph.
+   *
+   * @return the graph that connects words.
+   */
+  public Graph getGraph() {
+    return graph;
+  }
+
+  /**
+   * Sets the graph.
+   *
+   * @param graph the graph that connects words.
+   */
+  public void setGraph(Graph graph) {
+    this.graph = graph;
+  }
+
+  /**
+   * Queries the bridge words between two given words.
+   *
+   * @param word1 the first word.
+   * @param word2 the second word.
+   * @return a string containing the bridge words if found, otherwise an appropriate error message.
+   */
+  public String queryBridgeWords(String word1, String word2) {
+    if (word1 == null && word2 == null) {
+      return "word1 and word2 are null!";
     }
-
-    public Bridge(Graph graph) {
-        this.graph = graph;
+    if (word1 == null) {
+      return "word1 is null!";
     }
-
-    public Graph getGraph() {
-        return graph;
-    }
-
-    public void setGraph(Graph graph) {
-        this.graph = graph;
-    }
-
-    public String queryBridgeWords(String word1, String word2) {
-        if(word1 == null && word2 == null){
-            return "word1 and word2 are null!";
-        }
-        if(word1 == null){
-            return "word1 is null!";
-        }
-        if(word2 == null){
-            return "word2 is null!";
-        }
-        ArrayList<Vertex> vertices = graph.getVertices();
-        boolean word1Found = false;
-        boolean word2Found = false;
-        // 检查 word1 和 word2 是否存在于图中
-        for (Vertex v : vertices) {
-            if (v.getName().equals(word1)) {
-                word1Found = true;
-            }
-            if (v.getName().equals(word2)) {
-                word2Found = true;
-            }
-        }
-        // 如果 word1 或 word2 不存在于图中，则返回相应消息
-        if (!word1Found && !word2Found) {
-            return "No \"" + word1 + "\" and \"" + word2 + "\" in the graph!";
-        } else if (!word1Found) {
-            return "No \"" + word1 + "\" in the graph!";
-        } else if (!word2Found) {
-            return "No \"" + word2 + "\" in the graph!";
-        }
-        // 检查是否存在桥接词
-        ArrayList<String> bridgeWords = new ArrayList<>();
-        for (Vertex v : vertices) {
-            for (Vertex preVertex : v.getPreVSet()) {
-                if (preVertex.getName().equals(word1)) {
-                    for (Vertex nextVertex : v.getNextVSet()) {
-                        if (nextVertex.getName().equals(word2)) {
-                            bridgeWords.add(v.getName());
-                        }
-                    }
-                }
-            }
-        }
-        // 如果不存在桥接词，则返回相应消息
-        if (bridgeWords.isEmpty()) {
-            return "No bridge words from \"" + word1 + "\" to \"" + word2 + "\"!";
-        }
-        // 构建输出字符串
-        StringBuilder result = new StringBuilder("The bridge words from \"" + word1 + "\" to \"" + word2 + "\" are: " +
-                "\"");
-        for (int i = 0; i < bridgeWords.size(); i++) {
-            result.append(bridgeWords.get(i));
-            if (i < bridgeWords.size() - 1) {
-                result.append("\", \"");
-            }
-        }
-        result.append("\".");
-        return result.toString();
+    if (word2 == null) {
+      return "word2 is null!";
     }
 
-    private String privateGenerateNewText(String inputText) {
-        String[] words = inputText.split("\\s+"); // 分割输入文本中的单词
-        StringBuilder newText = new StringBuilder();
-        // 遍历输入文本的单词
-        for (int i = 0; i < words.length - 1; i++) {
-            String word1 = words[i];
-            String word2 = words[i + 1];
-            newText.append(word1); // 将当前单词添加到新文本中
-            // 检查 word1 和 word2 之间是否存在桥接词
-            String bridgeWord = privateQueryBridgeWords(word1, word2);
-            if (bridgeWord != null) {
-                // 如果存在桥接词，将其插入到新文本中
-                newText.append(" ").append(bridgeWord).append(" ");
-            } else {
-                // 如果不存在桥接词，在当前单词后面添加一个空格
-                newText.append(" ");
+    ArrayList<Vertex> vertices = graph.getVertices();
+    boolean word1Found = false;
+    boolean word2Found = false;
+
+    // Check if word1 and word2 exist in the graph
+    for (Vertex v : vertices) {
+      if (v.getName().equals(word1)) {
+        word1Found = true;
+      }
+      if (v.getName().equals(word2)) {
+        word2Found = true;
+      }
+    }
+
+    // Return appropriate message if word1 or word2 is not found
+    if (!word1Found && !word2Found) {
+      return "No \"" + word1 + "\" and \"" + word2 + "\" in the graph!";
+    } else if (!word1Found) {
+      return "No \"" + word1 + "\" in the graph!";
+    } else if (!word2Found) {
+      return "No \"" + word2 + "\" in the graph!";
+    }
+
+    // Check for bridge words
+    ArrayList<String> bridgeWords = new ArrayList<>();
+    for (Vertex v : vertices) {
+      for (Vertex preVertex : v.getPrevSet()) {
+        if (preVertex.getName().equals(word1)) {
+          for (Vertex nextVertex : v.getNextvSet()) {
+            if (nextVertex.getName().equals(word2)) {
+              bridgeWords.add(v.getName());
             }
+          }
         }
-        // 将最后一个单词添加到新文本中
-        newText.append(words[words.length - 1]);
-        return newText.toString();
+      }
     }
-    public String generateNewText(String inputText) {
-        String t1 = privateGenerateNewText(inputText);
-        String t2 = privateGenerateNewText(t1);
-        while(!t1.equals(t2)){
-            t1 = t2;
-            t2 = privateGenerateNewText(t1);
-        }
-        return t1;
+
+    // Return appropriate message if no bridge words are found
+    if (bridgeWords.isEmpty()) {
+      return "No bridge words from \"" + word1 + "\" to \"" + word2 + "\"!";
     }
-    private String privateQueryBridgeWords(String word1, String word2) {
-        ArrayList<Vertex> vertices = graph.getVertices();
-        // 检查是否存在桥接词
-        for (Vertex v : vertices) {
-            for (Vertex preVertex : v.getPreVSet()) {
-                if (preVertex.getName().equals(word1)) {
-                    for (Vertex nextVertex : v.getNextVSet()) {
-                        if (nextVertex.getName().equals(word2)) {
-                            return v.getName();
-                        }
-                    }
-                }
+
+    // Construct the output string
+    StringBuilder result = new StringBuilder("The bridge words from \"" + word1 
+        + "\" to \"" + word2 + "\" are: \"");
+    for (int i = 0; i < bridgeWords.size(); i++) {
+      result.append(bridgeWords.get(i));
+      if (i < bridgeWords.size() - 1) {
+        result.append("\", \"");
+      }
+    }
+    result.append("\".");
+    return result.toString();
+  }
+
+  /**
+   * Generates new text by inserting bridge words between consecutive words.
+   *
+   * @param inputText the input text.
+   * @return the new text with bridge words inserted.
+   */
+  private String privateGenerateNewText(String inputText) {
+    String[] words = inputText.split("\\s+"); // Split input text into words
+    StringBuilder newText = new StringBuilder();
+
+    // Traverse the words in the input text
+    for (int i = 0; i < words.length - 1; i++) {
+      String word1 = words[i];
+      String word2 = words[i + 1];
+      newText.append(word1); // Add the current word to the new text
+
+      // Check for bridge words between word1 and word2
+      String bridgeWord = privateQueryBridgeWords(word1, word2);
+      if (bridgeWord != null) {
+        // Insert the bridge word into the new text
+        newText.append(" ").append(bridgeWord).append(" ");
+      } else {
+        // Add a space after the current word if no bridge word is found
+        newText.append(" ");
+      }
+    }
+
+    // Add the last word to the new text
+    newText.append(words[words.length - 1]);
+    return newText.toString();
+  }
+
+  /**
+   * Generates new text in a private environment 
+   * by inserting bridge words between consecutive words.
+   *
+   * @param inputText the input text.
+   * @return the new text with bridge words inserted.
+   */
+  public String generateNewText(String inputText) {
+    String t1 = privateGenerateNewText(inputText);
+    String t2 = privateGenerateNewText(t1);
+    while (!t1.equals(t2)) {
+      t1 = t2;
+      t2 = privateGenerateNewText(t1);
+    }
+    return t1;
+  }
+
+  /**
+   * Queries the bridge words between two given words in a private environment.
+   *
+   * @param word1 the first word.
+   * @param word2 the second word.
+   * @return the bridge word if found, otherwise null.
+   */
+  private String privateQueryBridgeWords(String word1, String word2) {
+    ArrayList<Vertex> vertices = graph.getVertices();
+    // Check for bridge words
+    for (Vertex v : vertices) {
+      for (Vertex preVertex : v.getPrevSet()) {
+        if (preVertex.getName().equals(word1)) {
+          for (Vertex nextVertex : v.getNextvSet()) {
+            if (nextVertex.getName().equals(word2)) {
+              return v.getName();
             }
+          }
         }
-        return null;
+      }
     }
+    return null;
+  }
 }
