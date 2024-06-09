@@ -1,2 +1,2 @@
-mighty->mountains->of->california->but->not->only->that->let->freedom->ring->from->lookout->mountain->of->georgia->let->from->the->snowcapped->rockies->of->colorado->let->from
-游走经过重复边,停止!
+mountain->of->california->but->not->only->that->let->freedom->ring->lastpre->last
+No successor node to walk to!

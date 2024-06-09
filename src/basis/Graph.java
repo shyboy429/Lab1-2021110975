@@ -1,6 +1,7 @@
 package basis;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -88,8 +89,12 @@ public class Graph {
         int weight = pre.getWeight().get(cur);
         pre.getWeight().replace(cur, 1 + weight);
       } else {
-        pre.getNextvSet().add(cur);
-        cur.getPrevSet().add(pre);
+        HashSet<Vertex> nextvSet = pre.getNextvSet();
+        nextvSet.add(cur);
+        pre.setnextvSet(nextvSet);
+        HashSet<Vertex> prevSet = cur.getPrevSet();
+        prevSet.add(pre);
+        cur.setPrevSet(prevSet);
         pre.getWeight().put(cur, 1);
       }
     }
