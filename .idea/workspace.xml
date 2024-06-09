@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004d8679-bf32-43f7-826c-455ebd2929d3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/basis/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/t.txt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/t.txt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basis/GraphVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/GraphVisualizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/BaseWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/BaseWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MainApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +41,14 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/86139/Desktop/SELAB1/src/basis",
+    "last_opened_file_path": "C:/Users/86139/Desktop/java2023/document/06_软件与资料/05-资料/junit-libs/junit-4.12.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "settings.findbugs.project"
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -123,7 +126,8 @@
       <workItem from="1715589321288" duration="18665000" />
       <workItem from="1715651983643" duration="34209000" />
       <workItem from="1715738255335" duration="640000" />
-      <workItem from="1717893654472" duration="1861000" />
+      <workItem from="1717893654472" duration="4043000" />
+      <workItem from="1717899680616" duration="3811000" />
     </task>
     <servers />
   </component>
@@ -141,29 +145,13 @@
       </map>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/basis/GraphGenerate.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/basis/GraphGenerate.java</url>
-          <line>122</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/basis/Graph.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SELAB1$ui_MainApplication.ic" NAME="ui.MainApplication Coverage Results" MODIFIED="1717909427931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ui.*</FILTER>
+    </SUITE>
   </component>
 </project>
