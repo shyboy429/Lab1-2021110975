@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="004d8679-bf32-43f7-826c-455ebd2929d3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/basis/GraphVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/GraphVisualizer.java" afterDir="false" />
-    </list>
+    <list default="true" id="004d8679-bf32-43f7-826c-455ebd2929d3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +27,9 @@
     <option name="delegateBuildToMaven" value="true" />
   </component>
   <component name="ProjectId" id="2gPBQm5nsWEH8LU4GUGrh9S3Bqw" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -148,8 +148,11 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SELAB1$ui_MainApplication.ic" NAME="ui.MainApplication Coverage Results" MODIFIED="1717909427931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest.ic" NAME="ShortestPathTest Coverage Results" MODIFIED="1717921200047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest_testNullStartInvalidEnd.ic" NAME="ShortestPathTest.testNullStartInvalidEnd Coverage Results" MODIFIED="1717921940632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/SELAB1$ui_MainApplication.ic" NAME="ui.MainApplication Coverage Results" MODIFIED="1717924153621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ui.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest__1_.ic" NAME="ShortestPathTest (1) Coverage Results" MODIFIED="1717922681686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

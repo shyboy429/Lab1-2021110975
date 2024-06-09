@@ -72,10 +72,10 @@ public class GraphGenerate {
     try (
         // Create input stream with explicit charset
         BufferedReader bufferedReader = new BufferedReader(
-            new FileReader(inputPath.toFile(), StandardCharsets.UTF_8));
+            new FileReader(inputPath.toFile()));
         // Create output stream with explicit charset
         BufferedWriter bufferedWriter = new BufferedWriter(
-            new FileWriter(outputPath.toFile(), StandardCharsets.UTF_8))
+            new FileWriter(outputPath.toFile()))
     ) {
       // Read and process the input file content
       String line;
@@ -101,7 +101,7 @@ public class GraphGenerate {
   private static Graph privateGenGraph(Path filePath) {
     Graph graph = new Graph();
     try (Scanner scan = new Scanner(
-        new FileInputStream(filePath.toFile()), StandardCharsets.UTF_8)) {
+        new FileInputStream(filePath.toFile()))) {
       String preName = null;
       if (scan.hasNext()) {
         preName = scan.next();
