@@ -5,87 +5,195 @@ import java.util.HashSet;
 import java.util.Objects;
 
 /**
- * ClassName:basis.Vertex
- * Package:PACKAGE_NAME
- * Description:
+ * Represents a vertex in a graph.
+ * Each vertex has a name and sets of predecessor and successor vertices.
+ * Weights of edges to successor vertices are stored in a map.
  *
- * @date:2024/5/13 16:38
- * @author:shyboy
+ * @date: 2024/5/13 16:38
  */
 public class Vertex {
-    private String name;
-    private HashSet<Vertex> preVSet;
-    private HashSet<Vertex> nextVSet;
-    public HashMap<Vertex,Integer> weight;
+  private String name;
+  private HashSet<Vertex> prevSet;
+  private HashSet<Vertex> nextvSet;
+  public HashMap<Vertex, Integer> weight;
 
-    public Vertex() {
-        this.name = null;
-        this.preVSet = new HashSet<>();
-        this.nextVSet = new HashSet<>();
-        this.weight = new HashMap<>();
-    }
+  /**
+   * Constructs an empty Vertex.
+   * The name is set to null, and the predecessor and successor sets
+   * and weight map are initialized to empty sets
+   * and map.
+   */
+  public Vertex() {
+    this.name = null;
+    this.prevSet = new HashSet<>();
+    this.nextvSet = new HashSet<>();
+    this.weight = new HashMap<>();
+  }
 
-    public Vertex(String name) {
-        this.name = name;
-        this.preVSet = new HashSet<>();
-        this.nextVSet = new HashSet<>();
-        this.weight = new HashMap<>();
-    }
+  /**
+   * Constructs a Vertex with the specified name.
+   * The predecessor and successor sets and weight map are initialized to empty sets and map.
+   *
+   * @param name the name of the vertex
+   */
+  public Vertex(String name) {
+    this.name = name;
+    this.prevSet = new HashSet<>();
+    this.nextvSet = new HashSet<>();
+    this.weight = new HashMap<>();
+  }
 
-    public Vertex(String name, HashSet<Vertex> preVSet, HashSet<Vertex> nextVSet, HashMap<Vertex, Integer> weight) {
-        this.name = name;
-        this.preVSet = preVSet;
-        this.nextVSet = nextVSet;
-        this.weight = weight;
-    }
+  /**
+   * Constructs a Vertex with the specified name, predecessor set, successor set, and weight map.
+   *
+   * @param name     the name of the vertex
+   * @param prevSet  the set of predecessor vertices
+   * @param nextvSet the set of successor vertices
+   * @param weight   the map of weights to successor vertices
+   */
+  public Vertex(String name, HashSet<Vertex> prevSet,
+                HashSet<Vertex> nextvSet, HashMap<Vertex, Integer> weight) {
+    this.name = name;
+    this.prevSet = new HashSet<>(prevSet);
+    this.nextvSet = new HashSet<>(nextvSet);
+    this.weight = new HashMap<>(weight);
+  }
 
-    public String getName() {
-        return name;
-    }
+  /**
+   * Constructs a Vertex with the specified name, predecessor set, successor set, and weight map.
+   *
+   * @param vertex the vertex
+   */
+  public Vertex(Vertex vertex) {
+    this.name = vertex.name;
+    this.nextvSet = new HashSet<>(vertex.nextvSet);
+    this.prevSet = new HashSet<>(vertex.prevSet);
+    this.weight = new HashMap<>(vertex.weight);
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  /**
+   * Returns the set of predecessor vertices.
+   *
+   * @return the set of predecessor vertices
+   */
+  public HashSet<Vertex> getPrevSet() {
+    return new HashSet<>(prevSet);
+  }
 
-    public HashSet<Vertex> getPreVSet() {
-        return preVSet;
-    }
+  /**
+   * Returns the name of the vertex.
+   *
+   * @return the name of the vertex
+   */
+  public String getName() {
+    return name;
+  }
 
-    public void setPreVSet(HashSet<Vertex> preVSet) {
-        this.preVSet = preVSet;
-    }
+  /**
+   * Sets the name of the vertex.
+   *
+   * @param name the new name of the vertex
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public HashSet<Vertex> getNextVSet() {
-        return nextVSet;
-    }
+  /**
+   * Returns the set of predecessor vertices.
+   *
+   * @return the set of predecessor vertices
+   */
+  public HashSet<Vertex> nextvSet() {
+    return new HashSet<>(prevSet);
+  }
 
-    public void setNextVSet(HashSet<Vertex> nextVSet) {
-        this.nextVSet = nextVSet;
-    }
+  /**
+   * Sets the set of predecessor vertices.
+   *
+   * @param prevSet the new set of predecessor vertices
+   */
+  public void setPrevSet(HashSet<Vertex> prevSet) {
+    this.prevSet = new HashSet<>(prevSet);
+  }
 
-    public HashMap<Vertex, Integer> getWeight() {
-        return weight;
-    }
+  /**
+   * Returns the set of successor vertices.
+   *
+   * @return the set of successor vertices
+   */
+  public HashSet<Vertex> getNextvSet() {
+    return new HashSet<>(nextvSet);
+  }
 
-    public void setWeight(HashMap<Vertex, Integer> weight) {
-        this.weight = weight;
-    }
+  /**
+   * Sets the set of successor vertices.
+   *
+   * @param nextvSet the new set of successor vertices
+   */
+  public void setnextvSet(HashSet<Vertex> nextvSet) {
+    this.nextvSet = new HashSet<>(nextvSet);
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Vertex vertex = (Vertex) o;
-        return Objects.equals(name, vertex.name) && Objects.equals(preVSet, vertex.preVSet) && Objects.equals(nextVSet, vertex.nextVSet) && Objects.equals(weight, vertex.weight);
-    }
+  /**
+   * Returns the map of weights to successor vertices.
+   *
+   * @return the map of weights to successor vertices
+   */
+  public HashMap<Vertex, Integer> getWeight() {
+    return weight;
+  }
 
-    @Override
-    public int hashCode() {
-        return this.name.hashCode();
-    }
+  /**
+   * Sets the map of weights to successor vertices.
+   *
+   * @param weight the new map of weights to successor vertices
+   */
+  public void setWeight(HashMap<Vertex, Integer> weight) {
+    this.weight = weight;
+  }
 
-    @Override
-    public String toString() {
-        return this.name;
+  /**
+   * Checks if this vertex is equal to another object.
+   * Two vertices are considered equal if they have the same name,
+   * predecessor set, successor set, and weight map.
+   *
+   * @param o the object to compare with
+   * @return true if the objects are equal, false otherwise
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Vertex vertex = (Vertex) o;
+    return Objects.equals(name, vertex.name)
+        && Objects.equals(prevSet, vertex.prevSet)
+        && Objects.equals(nextvSet, vertex.nextvSet)
+        && Objects.equals(weight, vertex.weight);
+  }
+
+  /**
+   * Returns the hash code of the vertex.
+   * The hash code is computed based on the name of the vertex.
+   *
+   * @return the hash code of the vertex
+   */
+  @Override
+  public int hashCode() {
+    return this.name.hashCode();
+  }
+
+  /**
+   * Returns a string representation of the vertex.
+   * The string representation is the name of the vertex.
+   *
+   * @return the string representation of the vertex
+   */
+  @Override
+  public String toString() {
+    return this.name;
+  }
 }

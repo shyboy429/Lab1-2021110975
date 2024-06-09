@@ -1,331 +1,210 @@
 package basis;
 
-import javafx.scene.control.TextArea;
-
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.*;
-import java.util.List;
-import javax.swing.*;
+import java.io.OutputStreamWriter;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import javafx.scene.control.TextArea;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
+
+/**
+ * Class RandomWalk.
+ * Provides a GUI for controlling and displaying a random walk on a graph.
+ */
 public class RandomWalk extends JFrame {
-    private ArrayList<Vertex> vertices;  // 有向图的顶点列表
-    private boolean stopped;             // 用于标注是否停止
-    private TextArea console;
-    private boolean suspended;           // 用于标注线程是否暂停
-    private StringBuilder result;        // 存储随机游走结果的字符串构造器
 
-    public RandomWalk(Graph graph, TextArea console) {
-        this.vertices = graph.getVertices();
-        this.stopped = false;
-        this.suspended = false;
-        this.result = new StringBuilder();
-        this.console = console;
-        setTitle("Random Walk Control");
+  private ArrayList<Vertex> vertices;  // List of vertices in the directed graph
+  private boolean stopped;             // Flag to indicate if the walk is stopped
+  private TextArea console;
+  private boolean suspended;           // Flag to indicate if the thread is paused
+  private StringBuilder result;        // StringBuilder to store the random walk result
+  private SecureRandom random;         // Random number generator
 
-        // 创建继续按钮
-        JButton continueButton = new JButton("继续");
-        continueButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                resumeWalk();
-            }
-        });
-        // 创建暂停按钮
-        JButton stopButton = new JButton("暂停");
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                suspendWalk();
-            }
-        });
+  /**
+   * Random walk.
+   *
+   * @param graph   graph
+   * @param console console
+   */
+  public RandomWalk(Graph graph, TextArea console) {
+    this.vertices = graph.getVertices();
+    this.stopped = false;
+    this.suspended = false;
+    this.result = new StringBuilder();
+    this.console = console;
+    this.random = new SecureRandom(); // Initialize random number generator
+    setTitle("Random Walk Control");
 
-        // 美化按钮
-        continueButton.setBackground(new Color(20, 196, 254)); // 豆沙绿背景
-        continueButton.setForeground(Color.BLACK); // 白色文字
-        continueButton.setFocusPainted(false); // 去除按钮焦点框
-        continueButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // 设置按钮内边距
-        continueButton.setPreferredSize(new Dimension(200, 80));
+    // Create the continue button
+    JButton continueButton = new JButton("Continue");
+    continueButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        resumeWalk();
+      }
+    });
 
-        stopButton.setBackground(new Color(199, 236, 204)); // 豆沙绿背景
-        stopButton.setForeground(Color.BLACK); // 白色文字
-        stopButton.setFocusPainted(false); // 去除按钮焦点框
-        stopButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // 设置按钮内边距
-        stopButton.setPreferredSize(new Dimension(200, 80));
+    // Create the pause button
+    JButton stopButton = new JButton("Pause");
+    stopButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        suspendWalk();
+      }
+    });
 
-        // 设置布局并添加按钮
-        setLayout(new BorderLayout());
-        add(stopButton, BorderLayout.SOUTH);
-        add(continueButton, BorderLayout.NORTH);
-        setSize(300, 200);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 关闭窗口时只关闭当前窗口，不退出整个应用程序
-        setLocationRelativeTo(null); // 将窗口设置在屏幕中央
-        setVisible(true);
+    // Style buttons
+    continueButton.setBackground(new Color(20, 196, 254));
+    continueButton.setForeground(Color.BLACK);
+    continueButton.setFocusPainted(false);
+    continueButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+    continueButton.setPreferredSize(new Dimension(200, 80));
+
+    stopButton.setBackground(new Color(199, 236, 204));
+    stopButton.setForeground(Color.BLACK);
+    stopButton.setFocusPainted(false);
+    stopButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+    stopButton.setPreferredSize(new Dimension(200, 80));
+
+    // Set layout and add buttons
+    setLayout(new BorderLayout());
+    add(stopButton, BorderLayout.SOUTH);
+    add(continueButton, BorderLayout.NORTH);
+    setSize(300, 200);
+    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close current window only
+    setLocationRelativeTo(null); // Center the window on the screen
+    setVisible(true);
+  }
+
+  /**
+   * Pauses the thread.
+   */
+  public synchronized void suspendWalk() {
+    synchronized (this) {
+      suspended = true;
+    }
+  }
+
+  /**
+   * Resumes the thread.
+   */
+  public synchronized void resumeWalk() {
+    synchronized (this) {
+      suspended = false;
+      notify();
+    }
+  }
+
+  /**
+   * Starts a random walk on the graph.
+   *
+   * @return the result of the random walk.
+   */
+  public String randomWalk() {
+    if (vertices == null || vertices.isEmpty()) {
+      return "The vertex list is empty or null.";
     }
 
-    /**
-     * 线程暂停
-     */
-    public synchronized void suspendWalk() {
-        suspended = true;
+    HashMap<Vertex, HashSet<Vertex>> walkedVertices = new HashMap<>();
+    for (Vertex v : vertices) {
+      walkedVertices.put(v, new HashSet<>());
     }
 
-    /**
-     * 线程继续
-     */
-    public synchronized void resumeWalk() {
-        suspended = false;
-        notify();
-    }
+    Vertex pre = vertices.get(random.nextInt(vertices.size())); // Use existing Random object
+    Vertex next;
+    result.append(pre.getName());
+    System.out.print("Random walk starts:\n" + pre.getName());
 
-    public String randomWalk() {
-        if (vertices == null || vertices.isEmpty()) {
-            return "The vertex list is empty or null.";
-        }
-        HashMap<Vertex, HashSet<Vertex>> walkedVertices = new HashMap<>();
-        for (Vertex v : vertices) {
-            walkedVertices.put(v, new HashSet<>());
-        }
-        Vertex pre = vertices.get(new Random().nextInt(vertices.size()));
-        Vertex next;
-        result.append(pre.getName());
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
+    while (!stopped) {
+      synchronized (this) {
+        while (suspended) {
+          try {
+            wait();
+          } catch (InterruptedException e) {
             e.printStackTrace();
+          }
         }
-        System.out.print("随机游走开始:\n" + pre.getName());
+      }
 
-        while (!stopped) {
-            synchronized (this) {
-                while (suspended) {
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            try {
-                Thread.sleep(1000);  // 模拟每步的时间间隔
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                return result.toString();
-            }
-
-            next = randomSelect(pre.getNextVSet());
-            if (next == null) {
-                result.append("\n当前节点无后继结点可游走！");
-                System.out.print("\n当前节点无后继结点可游走！");
-                break;
-            }
-            if (!suspended) {
-                result.append("->").append(next.getName());
-                System.out.print("->" + next.getName());
-                if (walkedVertices.get(pre).contains(next)) {
-                    result.append("\n游走经过重复边,停止!");
-                    System.out.print("\n游走经过重复边,停止!");
-                    break;
-                }
-                walkedVertices.get(pre).add(next);
-                pre = next;
-            }
-        }
-        console.setText(result.toString());
+      try {
+        Thread.sleep(1000);  // Simulate time interval between steps
+      } catch (InterruptedException e) {
+        e.printStackTrace();
         return result.toString();
-    }
+      }
 
-    public Vertex randomSelect(Set<Vertex> set) {
-        if (set == null || set.size() == 0) {
-            return null;
+      next = randomSelect(pre.getNextvSet());
+      if (next == null) {
+        result.append("\nNo successor node to walk to!");
+        System.out.print("\nNo successor node to walk to!");
+        break;
+      }
+
+      synchronized (this) {
+        if (!suspended) {
+          result.append("->").append(next.getName());
+          System.out.print("->" + next.getName());
+          if (walkedVertices.get(pre).contains(next)) {
+            result.append("\nWalked through a repeated edge, stopping!");
+            System.out.print("\nWalked through a repeated edge, stopping!");
+            break;
+          }
+          walkedVertices.get(pre).add(next);
+          pre = next;
         }
-        int size = set.size();
-        int random = new Random().nextInt(size);
-        ArrayList<Vertex> list = new ArrayList<>(set);
-        return list.get(random);
+      }
     }
+    console.setText(result.toString());
+    return result.toString();
+  }
 
-    public void writeRandomWalkPathToFile(String randomWalkPath) {
-        // 获取当前项目的默认目录
-        String currentDirectory = System.getProperty("user.dir");
-        // 创建path.txt文件路径
-        File file = new File(currentDirectory, "path.txt");
-        // 使用BufferedWriter写入文件
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write(randomWalkPath);
-            System.out.println("\n写入磁盘成功！路径: " + file.getAbsolutePath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+  /**
+   * Selects a random vertex from a set of vertices.
+   *
+   * @param set the set of vertices to select from.
+   * @return the randomly selected vertex, or null if the set is empty.
+   */
+  public Vertex randomSelect(Set<Vertex> set) {
+    if (set == null || set.isEmpty()) {
+      return null;
     }
+    int random = this.random.nextInt(set.size()); // Use existing Random object
+    ArrayList<Vertex> list = new ArrayList<>(set);
+    return list.get(random);
+  }
 
+  /**
+   * Writes the random walk path to a file.
+   *
+   * @param randomWalkPath the path of the random walk.
+   */
+  public void writeRandomWalkPathToFile(String randomWalkPath) {
+    // Get the default directory of the current project
+    String currentDirectory = System.getProperty("user.dir");
+    // Create the path.txt file path
+    File file = new File(currentDirectory, "path.txt");
+
+    // Use BufferedWriter with specified charset to write to the file
+    try (BufferedWriter writer = new BufferedWriter(
+        new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {
+      writer.write(randomWalkPath);
+      System.out.println("\nSuccessfully written to disk! Path: " + file.getAbsolutePath());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 }
-
-
-//package basis; /**
-// * ClassName:basis.RandomWalk
-// * Package:PACKAGE_NAME
-// * Description:
-// *
-// * @date:2024/5/14 10:38
-// * @author:shyboy
-// */
-//
-//import java.awt.*;
-//import java.awt.event.*;
-//import java.util.HashMap;
-//import java.util.HashSet;
-//import java.util.List;
-//import java.util.Random;
-//import java.util.Scanner;
-//import java.util.Set;
-//import javax.swing.JFrame;
-//import javax.swing.*;
-//import java.awt.event.KeyAdapter;
-//import java.awt.event.KeyEvent;
-//import java.util.*;
-//
-//public class RandomWalk extends JFrame {
-//    private ArrayList<Vertex> vertices;  // 有向图的顶点列表
-//    private boolean stopped;             // 用于标注是否停止
-//    private boolean suspended;            //用于标注线程是否暂停
-//    private StringBuilder result;        // 存储随机游走结果的字符串构造器
-//
-//    private int isOver = 0;
-//
-//    public RandomWalk(Graph graph) {
-//        this.vertices = graph.getVertices();
-//        this.stopped = false;
-//        this.result = new StringBuilder();
-//        setTitle("Random Walk");
-//
-//        // 创建继续按钮
-//        JButton continueButton = new JButton("继续");
-//        continueButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                resume();
-//            }
-//        });
-//        // 创建暂停按钮
-//        JButton stopButton = new JButton("暂停");
-//        stopButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                suspend();
-//            }
-//        });
-//
-//        // 美化按钮
-//        continueButton.setBackground(new Color(20, 196, 254)); // 豆沙绿背景
-//        continueButton.setForeground(Color.BLACK); // 白色文字
-//        continueButton.setFocusPainted(false); // 去除按钮焦点框
-//        continueButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // 设置按钮内边距
-//        continueButton.setPreferredSize(new Dimension(200, 80));
-//
-//        stopButton.setBackground(new Color(199, 236, 204)); // 豆沙绿背景
-//        stopButton.setForeground(Color.BLACK); // 白色文字
-//        stopButton.setFocusPainted(false); // 去除按钮焦点框
-//        stopButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // 设置按钮内边距
-//        stopButton.setPreferredSize(new Dimension(200, 80));
-//        // 设置布局并添加按钮
-//        setLayout(new BorderLayout());
-//        add(stopButton, BorderLayout.SOUTH);
-//        add(continueButton, BorderLayout.NORTH);
-//        setSize(300, 200);
-//        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 关闭窗口时只关闭当前窗口，不退出整个应用程序
-//        setVisible(true);
-//    }
-//
-//    public void stop() {
-//        this.stopped = true;
-//    }
-//
-//    /**
-//     * 线程暂停
-//     */
-//    public void suspend() {
-//        suspended = true;
-//    }
-//
-//    /**
-//     * 线程继续
-//     */
-//    public synchronized void resume() {
-//        suspended = false;
-//        notify();
-//    }
-//
-//    public String randomWalk() {
-//        if (vertices == null || vertices.isEmpty()) {
-//            return "The vertex list is empty or null.";
-//        }
-//        HashMap<Vertex, HashSet<Vertex>> walkedVertices = new HashMap<>();
-//        for (Vertex v : vertices) {
-//            walkedVertices.put(v, new HashSet<>());
-//        }
-//        Vertex pre = vertices.get(new Random().nextInt(vertices.size()));
-//        Vertex next;
-//        result.append(pre.getName());
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.print("随机游走开始:\n" + pre.getName());
-//        while (!stopped) {
-//            try {
-//                Thread.sleep(1000);  // 模拟每步的时间间隔
-//                while (suspended) {
-//                    wait();
-//                }
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//                return result.toString();
-//            }
-//
-//            next = randomSelect(pre.getNextVSet());
-//            if (next == null) {
-//                result.append("\n当前节点无后继结点可游走！");
-//                System.out.println("\n当前节点无后继结点可游走！");
-//                break;
-//            }
-//            if (!stopped) {
-//                result.append("->").append(next.getName());
-//                System.out.print("->" + next.getName());
-//                if (walkedVertices.get(pre).contains(next)) {
-//                    result.append("\n游走经过重复边,停止!");
-//                    System.out.println("\n游走经过重复边,停止!");
-//                    break;
-//                }
-//                walkedVertices.get(pre).add(next);
-//                pre = next;
-//            }
-//        }
-//        // 确保用户输入线程已结束
-////        try {
-////            System.out.println("*****1*****");
-////            userInputThread.join();
-////            System.out.println("*****2*****");
-////        } catch (InterruptedException e) {
-////            e.printStackTrace();
-////        }
-//        return result.toString();
-//    }
-//
-//    public Vertex randomSelect(HashSet<Vertex> set) {
-//        if (set == null || set.size() == 0) {
-//            return null;
-//        }
-//        int size = set.size();
-//        int random = new Random().nextInt(size);
-//        ArrayList<Vertex> list = new ArrayList<>(set);
-//        return list.get(random);
-//    }
-//}
