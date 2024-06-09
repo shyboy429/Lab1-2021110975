@@ -26,7 +26,9 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-@SuppressWarnings("checkstyle:MissingJavadocType")
+/**
+ * GraphVisualizer.
+ */
 public class GraphVisualizer extends JFrame {
 
   private static final Logger logger = Logger.getLogger(GraphVisualizer.class.getName());
@@ -53,8 +55,12 @@ public class GraphVisualizer extends JFrame {
   private static final Random random = new Random();
   public mxGraph mxGraph = new mxGraph();
 
-  @SuppressWarnings({"checkstyle:Indentation", "checkstyle:LeftCurly", "checkstyle:LineLength",
-      "checkstyle:MissingJavadocMethod"})
+  /**
+   * Graph visualizer.
+   *
+   * @param graph 有向图
+   * @param paths 最短路径
+   */
   public GraphVisualizer(Graph graph, List<List<String>> paths) {
     super("展示有向图");
 
@@ -150,9 +156,7 @@ public class GraphVisualizer extends JFrame {
         }
       }
       //开始标注
-      if (paths != null)
-      // 遍历二维数组
-      {
+      if (paths != null) {
         for (List<String> row : paths) {
           // 获取当前行的大小
           String color = generateColorCode();
