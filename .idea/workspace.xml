@@ -4,16 +4,52 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="004d8679-bf32-43f7-826c-455ebd2929d3" name="Changes" comment="" />
+    <list default="true" id="004d8679-bf32-43f7-826c-455ebd2929d3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/ShortestPathTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/Bridge.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/Graph.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/GraphGenerate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/GraphVisualizer$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/GraphVisualizer$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/GraphVisualizer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/RandomWalk$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/RandomWalk$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/RandomWalk.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/ShortestPath.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/Vertex.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/BaseWindow.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/BaseWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/BaseWindowController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/BaseWindowController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/BaseWindowController$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/BaseWindowController$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/BaseWindowController$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/BaseWindowController$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/BaseWindowController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/MainApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/PathPane.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/SubPane.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/ui/gentext.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/path.txt" beforeDir="false" afterPath="$PROJECT_DIR$/path.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basis/GraphGenerate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/GraphGenerate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/BaseWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/BaseWindowController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="0" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="C:\Users\86139\Desktop\HIT\软件工程\lab\lab3\覆盖率报告" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -34,21 +70,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/86139/Desktop/java2023/document/06_软件与资料/05-资料/junit-libs/junit-4.12.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "last_opened_file_path": "C:/Users/86139/Desktop/HIT/软件工程/lab/lab3/覆盖率报告",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.26143143",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\86139\Desktop\SELAB1\src\basis" />
@@ -58,36 +97,18 @@
       <recent name="C:\Users\86139\Desktop\SELAB1\src\ui" />
       <recent name="C:\Users\86139\Desktop\SELAB1\src" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="basis" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.ui.MainApplication">
-    <configuration name="basis.GraphGenerate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="basis.GraphGenerate" />
-      <module name="SELAB1" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\JDK\javafx-sdk-22.0.1\lib&quot; --add-modules=javafx.controls,javafx.fxml " />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="basis.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="basis.Main" />
-      <module name="SELAB1" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\JDK\javafx-sdk-22.0.1\lib&quot; --add-modules=javafx.controls,javafx.fxml " />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="basis.RandomWalk" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="basis.RandomWalk" />
-      <module name="SELAB1" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\JDK\javafx-sdk-22.0.1\lib&quot; --add-modules=javafx.controls,javafx.fxml " />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ui.MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.MainApplication" />
       <module name="SELAB1" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\JDK\javafx-sdk-22.0.1\lib&quot; --add-modules=javafx.controls,javafx.fxml " />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\JDK\javafx-sdk-22.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ui.*" />
@@ -98,18 +119,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ShortestPathTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SELAB1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="basis.ShortestPath" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.ShortestPathTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.ui.MainApplication" />
-      <item itemvalue="Application.basis.GraphGenerate" />
-      <item itemvalue="Application.basis.Main" />
-      <item itemvalue="Application.basis.RandomWalk" />
+      <item itemvalue="JUnit.ShortestPathTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ui.MainApplication" />
-        <item itemvalue="Application.basis.Main" />
-        <item itemvalue="Application.basis.RandomWalk" />
-        <item itemvalue="Application.basis.GraphGenerate" />
+        <item itemvalue="JUnit.ShortestPathTest" />
       </list>
     </recent_temporary>
   </component>
@@ -126,6 +163,9 @@
       <workItem from="1715738255335" duration="640000" />
       <workItem from="1717893654472" duration="4043000" />
       <workItem from="1717899680616" duration="3811000" />
+      <workItem from="1717927160525" duration="2321000" />
+      <workItem from="1717929508330" duration="161000" />
+      <workItem from="1717929687727" duration="3102000" />
     </task>
     <servers />
   </component>
@@ -148,11 +188,31 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest.ic" NAME="ShortestPathTest Coverage Results" MODIFIED="1717921200047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest.ic" NAME="ShortestPathTest Coverage Results" MODIFIED="1717932506000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>basis.ShortestPath</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest_testMultiShortestPathTest.ic" NAME="ShortestPathTest.testMultiShortestPathTest Coverage Results" MODIFIED="1717931751636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest_testWord1IsNullAndWord2isNotExist.ic" NAME="ShortestPathTest.testWord1IsNullAndWord2isNotExist Coverage Results" MODIFIED="1717931175426" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest_testNullStartInvalidEnd.ic" NAME="ShortestPathTest.testNullStartInvalidEnd Coverage Results" MODIFIED="1717921940632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/SELAB1$ui_MainApplication.ic" NAME="ui.MainApplication Coverage Results" MODIFIED="1717924153621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest_testWord2Null.ic" NAME="ShortestPathTest.testWord2Null Coverage Results" MODIFIED="1717928839904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest_testOneShortestPath.ic" NAME="ShortestPathTest.testOneShortestPath Coverage Results" MODIFIED="1717931763777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest_testWord1Null.ic" NAME="ShortestPathTest.testWord1Null Coverage Results" MODIFIED="1717930999300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SELAB1$ui_MainApplication.ic" NAME="ui.MainApplication Coverage Results" MODIFIED="1717928887617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ui.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest__1_.ic" NAME="ShortestPathTest (1) Coverage Results" MODIFIED="1717922681686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest_testStartWordNotInGraph.ic" NAME="ShortestPathTest.testStartWordNotInGraph Coverage Results" MODIFIED="1717931068892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.*</FILTER>
+    </SUITE>
   </component>
 </project>
