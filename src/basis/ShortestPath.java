@@ -32,7 +32,7 @@ public class ShortestPath {
    * @param graph the graph to be used for finding shortest paths
    */
   public ShortestPath(Graph graph) {
-    this.graph = graph;
+    this.graph = new Graph(graph); // Create a deep copy of the graph
   }
 
   /**
@@ -111,7 +111,7 @@ public class ShortestPath {
         break;
       }
       // 遍历当前节点的相邻节点
-      for (Vertex v : u.getNextVSet()) {
+      for (Vertex v : u.getNextvSet()) {
         // 计算经当前节点到相邻节点的距离
         int alt = dist.get(u) + u.weight.get(v);
         // 如果新计算的距离比原先记录的距离小

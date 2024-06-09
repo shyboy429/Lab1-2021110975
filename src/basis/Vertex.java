@@ -54,9 +54,21 @@ public class Vertex {
   public Vertex(String name, HashSet<Vertex> prevSet,
                 HashSet<Vertex> nextvSet, HashMap<Vertex, Integer> weight) {
     this.name = name;
-    this.prevSet = prevSet;
-    this.nextvSet = nextvSet;
-    this.weight = weight;
+    this.prevSet = new HashSet<>(prevSet);
+    this.nextvSet = new HashSet<>(nextvSet);
+    this.weight = new HashMap<>(weight);
+  }
+
+  /**
+   * Constructs a Vertex with the specified name, predecessor set, successor set, and weight map.
+   *
+   * @param vertex the vertex
+   */
+  public Vertex(Vertex vertex) {
+    this.name = vertex.name;
+    this.nextvSet = new HashSet<>(vertex.nextvSet);
+    this.prevSet = new HashSet<>(vertex.prevSet);
+    this.weight = new HashMap<>(vertex.weight);
   }
 
   /**
@@ -65,7 +77,7 @@ public class Vertex {
    * @return the set of predecessor vertices
    */
   public HashSet<Vertex> getPrevSet() {
-    return prevSet;
+    return new HashSet<>(prevSet);
   }
 
   /**
@@ -92,7 +104,7 @@ public class Vertex {
    * @return the set of predecessor vertices
    */
   public HashSet<Vertex> nextvSet() {
-    return prevSet;
+    return new HashSet<>(prevSet);
   }
 
   /**
@@ -101,7 +113,7 @@ public class Vertex {
    * @param prevSet the new set of predecessor vertices
    */
   public void setPrevSet(HashSet<Vertex> prevSet) {
-    this.prevSet = prevSet;
+    this.prevSet = new HashSet<>(prevSet);
   }
 
   /**
@@ -110,7 +122,7 @@ public class Vertex {
    * @return the set of successor vertices
    */
   public HashSet<Vertex> getNextvSet() {
-    return nextvSet;
+    return new HashSet<>(nextvSet);
   }
 
   /**
@@ -119,7 +131,7 @@ public class Vertex {
    * @param nextvSet the new set of successor vertices
    */
   public void setnextvSet(HashSet<Vertex> nextvSet) {
-    this.nextvSet = nextvSet;
+    this.nextvSet = new HashSet<>(nextvSet);
   }
 
   /**

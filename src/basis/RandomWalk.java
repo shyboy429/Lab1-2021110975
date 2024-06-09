@@ -7,12 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 import javafx.scene.control.TextArea;
 import javax.swing.BorderFactory;
@@ -31,6 +32,7 @@ public class RandomWalk extends JFrame {
   private TextArea console;
   private boolean suspended;           // Flag to indicate if the thread is paused
   private StringBuilder result;        // StringBuilder to store the random walk result
+  private SecureRandom random;         // Random number generator
 
   /**
    * Random walk.
@@ -44,6 +46,7 @@ public class RandomWalk extends JFrame {
     this.suspended = false;
     this.result = new StringBuilder();
     this.console = console;
+    this.random = new SecureRandom(); // Initialize random number generator
     setTitle("Random Walk Control");
 
     // Create the continue button
@@ -91,15 +94,19 @@ public class RandomWalk extends JFrame {
    * Pauses the thread.
    */
   public synchronized void suspendWalk() {
-    suspended = true;
+    synchronized (this) {
+      suspended = true;
+    }
   }
 
   /**
    * Resumes the thread.
    */
   public synchronized void resumeWalk() {
-    suspended = false;
-    notify();
+    synchronized (this) {
+      suspended = false;
+      notify();
+    }
   }
 
   /**
@@ -117,7 +124,7 @@ public class RandomWalk extends JFrame {
       walkedVertices.put(v, new HashSet<>());
     }
 
-    Vertex pre = vertices.get(new Random().nextInt(vertices.size()));
+    Vertex pre = vertices.get(random.nextInt(vertices.size())); // Use existing Random object
     Vertex next;
     result.append(pre.getName());
     System.out.print("Random walk starts:\n" + pre.getName());
@@ -140,22 +147,25 @@ public class RandomWalk extends JFrame {
         return result.toString();
       }
 
-      next = randomSelect(pre.getNextVSet());
+      next = randomSelect(pre.getNextvSet());
       if (next == null) {
         result.append("\nNo successor node to walk to!");
         System.out.print("\nNo successor node to walk to!");
         break;
       }
-      if (!suspended) {
-        result.append("->").append(next.getName());
-        System.out.print("->" + next.getName());
-        if (walkedVertices.get(pre).contains(next)) {
-          result.append("\nWalked through a repeated edge, stopping!");
-          System.out.print("\nWalked through a repeated edge, stopping!");
-          break;
+
+      synchronized (this) {
+        if (!suspended) {
+          result.append("->").append(next.getName());
+          System.out.print("->" + next.getName());
+          if (walkedVertices.get(pre).contains(next)) {
+            result.append("\nWalked through a repeated edge, stopping!");
+            System.out.print("\nWalked through a repeated edge, stopping!");
+            break;
+          }
+          walkedVertices.get(pre).add(next);
+          pre = next;
         }
-        walkedVertices.get(pre).add(next);
-        pre = next;
       }
     }
     console.setText(result.toString());
@@ -172,7 +182,7 @@ public class RandomWalk extends JFrame {
     if (set == null || set.isEmpty()) {
       return null;
     }
-    int random = new Random().nextInt(set.size());
+    int random = this.random.nextInt(set.size()); // Use existing Random object
     ArrayList<Vertex> list = new ArrayList<>(set);
     return list.get(random);
   }
@@ -188,8 +198,9 @@ public class RandomWalk extends JFrame {
     // Create the path.txt file path
     File file = new File(currentDirectory, "path.txt");
 
-    // Use BufferedWriter to write to the file
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+    // Use BufferedWriter with specified charset to write to the file
+    try (BufferedWriter writer = new BufferedWriter(
+        new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {
       writer.write(randomWalkPath);
       System.out.println("\nSuccessfully written to disk! Path: " + file.getAbsolutePath());
     } catch (IOException e) {

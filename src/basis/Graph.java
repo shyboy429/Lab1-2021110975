@@ -1,14 +1,14 @@
 package basis;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * ClassName:basis.Graph
- * Package:PACKAGE_NAME
+ * ClassName: basis.Graph
+ * Package: PACKAGE_NAME
  * Description: This class represents a graph data structure used to store vertices and edges.
  *
- * @author shyboy
  * @version 1.0
  * @date: 2024/5/13 16:48
  */
@@ -19,6 +19,15 @@ public class Graph {
   private ArrayList<Vertex> vertices;
 
   /**
+   * Constructs a graph with the given graph.
+   *
+   * @param graph the graph to copy.
+   */
+  public Graph(Graph graph) {
+    this.vertices = new ArrayList<>(copyVertices(graph.getVertices()));
+  }
+
+  /**
    * Constructs an empty graph.
    */
   public Graph() {
@@ -26,21 +35,21 @@ public class Graph {
   }
 
   /**
-   * Returns all vertices in the graph.
+   * Returns a deep copy of all vertices in the graph.
    *
-   * @return an ArrayList containing all vertices in the graph.
+   * @return an ArrayList containing copies of all vertices in the graph.
    */
   public ArrayList<Vertex> getVertices() {
-    return vertices;
+    return new ArrayList<>(copyVertices(vertices));
   }
 
   /**
-   * Sets all vertices in the graph.
+   * Sets all vertices in the graph with copies of the given vertices.
    *
-   * @param vertices an ArrayList containing all vertices in the graph.
+   * @param vertices an ArrayList containing vertices to set in the graph.
    */
   public void setVertices(ArrayList<Vertex> vertices) {
-    this.vertices = vertices;
+    this.vertices = new ArrayList<>(copyVertices(vertices));
   }
 
   /**
@@ -64,8 +73,8 @@ public class Graph {
    * @param curName the name of the ending vertex of the edge.
    */
   public void addEdge(String preName, String curName) {
-    Vertex pre = new Vertex();
-    Vertex cur = new Vertex();
+    Vertex pre = null;
+    Vertex cur = null;
     for (Vertex v : vertices) {
       if (v.getName().equalsIgnoreCase(preName)) {
         pre = v;
@@ -74,13 +83,15 @@ public class Graph {
         cur = v;
       }
     }
-    if (pre.getNextvSet().contains(cur)) {
-      int weight = pre.getWeight().get(cur);
-      pre.getWeight().replace(cur, 1 + weight);
-    } else {
-      pre.getNextvSet().add(cur);
-      cur.getPrevSet().add(pre);
-      pre.getWeight().put(cur, 1);
+    if (pre != null && cur != null) {
+      if (pre.getNextvSet().contains(cur)) {
+        int weight = pre.getWeight().get(cur);
+        pre.getWeight().replace(cur, 1 + weight);
+      } else {
+        pre.getNextvSet().add(cur);
+        cur.getPrevSet().add(pre);
+        pre.getWeight().put(cur, 1);
+      }
     }
   }
 
@@ -113,5 +124,19 @@ public class Graph {
     }
     Graph graph = (Graph) o;
     return Objects.equals(vertices, graph.vertices);
+  }
+
+  /**
+   * Creates a deep copy of the given list of vertices.
+   *
+   * @param vertices the list of vertices to copy.
+   * @return a deep copy of the list of vertices.
+   */
+  private ArrayList<Vertex> copyVertices(List<Vertex> vertices) {
+    ArrayList<Vertex> copy = new ArrayList<>();
+    for (Vertex v : vertices) {
+      copy.add(new Vertex(v));
+    }
+    return copy;
   }
 }

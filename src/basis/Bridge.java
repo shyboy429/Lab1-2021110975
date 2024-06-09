@@ -1,10 +1,13 @@
 package basis;
 
-import java.util.ArrayList;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
- * ClassName:basis.Bridge
- * Package:PACKAGE_NAME
+ * ClassName: basis.Bridge
+ * Package: PACKAGE_NAME
  * Description: This class represents a bridge that connects words in a graph.
  *
  * @author shyboy
@@ -25,13 +28,14 @@ public class Bridge {
     this.graph = new Graph();
   }
 
+  
   /**
    * Constructs a Bridge object with the given graph.
    *
    * @param graph the graph that connects words.
    */
   public Bridge(Graph graph) {
-    this.graph = graph;
+    this.graph = new Graph(graph); 
   }
 
   /**
@@ -40,7 +44,7 @@ public class Bridge {
    * @return the graph that connects words.
    */
   public Graph getGraph() {
-    return graph;
+    return new Graph(graph);  // Assuming Graph class has a copy constructor
   }
 
   /**
@@ -49,7 +53,7 @@ public class Bridge {
    * @param graph the graph that connects words.
    */
   public void setGraph(Graph graph) {
-    this.graph = graph;
+    this.graph = new Graph(graph);  // Assuming Graph class has a copy constructor
   }
 
   /**
@@ -70,7 +74,7 @@ public class Bridge {
       return "word2 is null!";
     }
 
-    ArrayList<Vertex> vertices = graph.getVertices();
+    List<Vertex> vertices = graph.getVertices();
     boolean word1Found = false;
     boolean word2Found = false;
 
@@ -94,7 +98,7 @@ public class Bridge {
     }
 
     // Check for bridge words
-    ArrayList<String> bridgeWords = new ArrayList<>();
+    Set<String> bridgeWords = new HashSet<>();
     for (Vertex v : vertices) {
       for (Vertex preVertex : v.getPrevSet()) {
         if (preVertex.getName().equals(word1)) {
@@ -113,13 +117,15 @@ public class Bridge {
     }
 
     // Construct the output string
-    StringBuilder result = new StringBuilder("The bridge words from \"" + word1 
+    StringBuilder result = new StringBuilder("The bridge words from \"" + word1
         + "\" to \"" + word2 + "\" are: \"");
-    for (int i = 0; i < bridgeWords.size(); i++) {
-      result.append(bridgeWords.get(i));
+    int i = 0;
+    for (String bridgeWord : bridgeWords) {
+      result.append(bridgeWord);
       if (i < bridgeWords.size() - 1) {
         result.append("\", \"");
       }
+      i++;
     }
     result.append("\".");
     return result.toString();
@@ -158,7 +164,7 @@ public class Bridge {
   }
 
   /**
-   * Generates new text in a private environment 
+   * Generates new text in a private environment
    * by inserting bridge words between consecutive words.
    *
    * @param inputText the input text.
@@ -182,7 +188,7 @@ public class Bridge {
    * @return the bridge word if found, otherwise null.
    */
   private String privateQueryBridgeWords(String word1, String word2) {
-    ArrayList<Vertex> vertices = graph.getVertices();
+    List<Vertex> vertices = graph.getVertices();
     // Check for bridge words
     for (Vertex v : vertices) {
       for (Vertex preVertex : v.getPrevSet()) {

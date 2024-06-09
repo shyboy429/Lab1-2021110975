@@ -1,9 +1,6 @@
 package basis;
 
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
-import com.mxgraph.layout.mxCircleLayout;
-import com.mxgraph.layout.mxCompactTreeLayout;
-import com.mxgraph.layout.mxFastOrganicLayout;
 import com.mxgraph.layout.mxGraphLayout;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
@@ -63,7 +60,7 @@ public class GraphVisualizer extends JFrame {
               new Object[]{vertex});
         }
         // 遍历当前顶点的每个邻居
-        for (Vertex next : v.getNextVSet()) {
+        for (Vertex next : v.getNextvSet()) {
           // 判断邻居是否已经存在于图中
           int k = rand.nextInt(900);
           int z = rand.nextInt(1000);
