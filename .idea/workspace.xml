@@ -199,7 +199,7 @@
       <workItem from="1717929508330" duration="161000" />
       <workItem from="1717929687727" duration="3176000" />
       <workItem from="1717995574305" duration="863000" />
-      <workItem from="1718005895935" duration="15275000" />
+      <workItem from="1718005895935" duration="15942000" />
     </task>
     <servers />
   </component>
@@ -238,7 +238,7 @@
     <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest_testStartWordNotInGraph.ic" NAME="ShortestPathTest.testStartWordNotInGraph Coverage Results" MODIFIED="1717931068892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>test.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/SELAB1$BridgeTest.ic" NAME="BridgeTest Coverage Results" MODIFIED="1718030234661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/SELAB1$BridgeTest.ic" NAME="BridgeTest Coverage Results" MODIFIED="1718030609770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>basis.Bridge</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest_testMultiShortestPathTest.ic" NAME="ShortestPathTest.testMultiShortestPathTest Coverage Results" MODIFIED="1717931751636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -254,7 +254,7 @@
       <FILTER>ui.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest__1_.ic" NAME="ShortestPathTest (1) Coverage Results" MODIFIED="1717922681686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/SELAB1$BridgeTest_testQueryBridgeWords_SingleBridgeWord.ic" NAME="BridgeTest.testQueryBridgeWords_SingleBridgeWord Coverage Results" MODIFIED="1718009741219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/SELAB1$BridgeTest_testQueryBridgeWords_SingleBridgeWord.ic" NAME="BridgeTest.testQueryBridgeWords_SingleBridgeWord Coverage Results" MODIFIED="1718030634670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>test.*</FILTER>
     </SUITE>
   </component>
