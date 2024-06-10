@@ -1,12 +1,4 @@
 package ui;
-
-
-import basis.Bridge;
-import basis.Graph;
-import basis.GraphGenerate;
-import basis.GraphVisualizer;
-import basis.RandomWalk;
-import basis.ShortestPath;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -15,6 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import basis.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,8 +22,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-
-class BaseWindowController {
+public class BaseWindowController {
 
   private static final Logger logger = Logger.getLogger(BaseWindowController.class.getName());
   private Graph graph;

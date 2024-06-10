@@ -28,14 +28,14 @@ public class Bridge {
     this.graph = new Graph();
   }
 
-  
+
   /**
    * Constructs a Bridge object with the given graph.
    *
    * @param graph the graph that connects words.
    */
   public Bridge(Graph graph) {
-    this.graph = new Graph(graph); 
+    this.graph = new Graph(graph);
   }
 
   /**
@@ -73,12 +73,9 @@ public class Bridge {
     if (word2 == null) {
       return "word2 is null!";
     }
-
     List<Vertex> vertices = graph.getVertices();
     boolean word1Found = false;
     boolean word2Found = false;
-
-    // Check if word1 and word2 exist in the graph
     for (Vertex v : vertices) {
       if (v.getName().equals(word1)) {
         word1Found = true;
@@ -87,8 +84,6 @@ public class Bridge {
         word2Found = true;
       }
     }
-
-    // Return appropriate message if word1 or word2 is not found
     if (!word1Found && !word2Found) {
       return "No \"" + word1 + "\" and \"" + word2 + "\" in the graph!";
     } else if (!word1Found) {
@@ -96,29 +91,27 @@ public class Bridge {
     } else if (!word2Found) {
       return "No \"" + word2 + "\" in the graph!";
     }
-
-    // Check for bridge words
     Set<String> bridgeWords = new HashSet<>();
     for (Vertex v : vertices) {
-      for (Vertex preVertex : v.getPrevSet()) {
-        if (preVertex.getName().equals(word1)) {
-          for (Vertex nextVertex : v.getNextvSet()) {
-            if (nextVertex.getName().equals(word2)) {
-              bridgeWords.add(v.getName());
-            }
-          }
-        }
+      Set<Vertex> prevSet = v.getPrevSet();
+      Set<Vertex> nextvSet = v.getNextvSet();
+      boolean hasWord1 = prevSet.stream().anyMatch(preVertex -> preVertex.getName().equals(word1));
+      boolean hasWord2 = nextvSet.stream().anyMatch(nextVertex -> nextVertex.getName().equals(word2));
+      if (hasWord1 && hasWord2) {
+        bridgeWords.add(v.getName());
       }
     }
-
-    // Return appropriate message if no bridge words are found
     if (bridgeWords.isEmpty()) {
       return "No bridge words from \"" + word1 + "\" to \"" + word2 + "\"!";
     }
-
-    // Construct the output string
-    StringBuilder result = new StringBuilder("The bridge words from \"" + word1
-        + "\" to \"" + word2 + "\" are: \"");
+    StringBuilder result;
+    if(bridgeWords.size() != 1){
+      result = new StringBuilder("The bridge words from \"" + word1
+          + "\" to \"" + word2 + "\" are: \"");
+    }else{
+      result = new StringBuilder("The bridge words from \"" + word1
+          + "\" to \"" + word2 + "\" is: \"");
+    }
     int i = 0;
     for (String bridgeWord : bridgeWords) {
       result.append(bridgeWord);
