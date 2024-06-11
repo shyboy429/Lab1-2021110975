@@ -34,7 +34,6 @@ public class GraphVisualizer extends JFrame {
   private static final Logger logger = Logger.getLogger(GraphVisualizer.class.getName());
 
   // 定义颜色数组，这些颜色都是经典的，有区分度的颜色，且不包含黑色和白色
-  @SuppressWarnings("checkstyle:LineLength")
   private static final String[] colors = {
       "#FF6347", "#7FFFD4", "#FFD700", "#32CD32", "#4682B4", "#FF69B4", "#00BFFF", "#9370DB",
       "#008080",
@@ -228,8 +227,7 @@ public class GraphVisualizer extends JFrame {
     }
     return null;
   }
-
-  @SuppressWarnings({"checkstyle:LineLength", "checkstyle:MissingJavadocMethod"})
+  
   public void highlightEdges(String sourceNodeName, String targetNodeName, String color) {
     // 遍历图中所有的边
     Object[] edges = this.mxGraph.getChildEdges(this.mxGraph.getDefaultParent());

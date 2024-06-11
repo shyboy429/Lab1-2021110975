@@ -47,6 +47,9 @@ public class ShortestPath {
     if (word1 == null && word2 == null) {
       return "Invalid start and end points!";
     } else if (word1 == null) {
+      if(word2.contains(" ")){
+        return "Invalid input! Word1 contains Spaces";
+      }
       Vertex word = getVertexByName(vertices, word2);
       if (word == null) {
         return "There is no such vertex in the graph.";
@@ -62,6 +65,9 @@ public class ShortestPath {
       word2ToAllPath.delete(word2ToAllPath.length() - 2, word2ToAllPath.length());
       return word2ToAllPath.toString();
     } else if (word2 == null) {
+      if(word1.contains(" ")){
+        return "Invalid input! Word1 contains Spaces";
+      }
       Vertex word = getVertexByName(vertices, word1);
       if (word == null) {
         return "There is no such vertex in the graph.";
@@ -78,6 +84,13 @@ public class ShortestPath {
       return word1ToAllPath.toString();
     }
 
+    if(word1.contains(" ") && word2.contains(" ")){
+      return "Invalid input! Word1 and word2 contains Spaces";
+    }else if(word1.contains(" ")){
+      return "Invalid input! Word1 contains Spaces";
+    }else if(word2.contains(" ")){
+      return "Invalid input! Word2 contains Spaces";
+    }
     // 获取起点和终点节点对象
     Vertex start = getVertexByName(vertices, word1);
     Vertex end = getVertexByName(vertices, word2);
