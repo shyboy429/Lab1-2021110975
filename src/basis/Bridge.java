@@ -96,7 +96,8 @@ public class Bridge {
       Set<Vertex> prevSet = v.getPrevSet();
       Set<Vertex> nextvSet = v.getNextvSet();
       boolean hasWord1 = prevSet.stream().anyMatch(preVertex -> preVertex.getName().equals(word1));
-      boolean hasWord2 = nextvSet.stream().anyMatch(nextVertex -> nextVertex.getName().equals(word2));
+      boolean hasWord2 = nextvSet.stream()
+              .anyMatch(nextVertex -> nextVertex.getName().equals(word2));
       if (hasWord1 && hasWord2) {
         bridgeWords.add(v.getName());
       }
@@ -105,10 +106,10 @@ public class Bridge {
       return "No bridge words from \"" + word1 + "\" to \"" + word2 + "\"!";
     }
     StringBuilder result;
-    if(bridgeWords.size() != 1){
+    if (bridgeWords.size() != 1) {
       result = new StringBuilder("The bridge words from \"" + word1
           + "\" to \"" + word2 + "\" are: \"");
-    }else{
+    } else {
       result = new StringBuilder("The bridge words from \"" + word1
           + "\" to \"" + word2 + "\" is: \"");
     }

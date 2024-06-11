@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004d8679-bf32-43f7-826c-455ebd2929d3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/ShortestPathTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basis/Bridge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/Bridge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/basis/ShortestPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/ShortestPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/BridgeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/BridgeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +69,7 @@
       <recent name="C:\Users\86139\Desktop\SELAB1\src\ui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\86139\Desktop\SELAB1\src\test" />
       <recent name="C:\Users\86139\Desktop\SELAB1\src\ui" />
       <recent name="C:\Users\86139\Desktop\SELAB1\src" />
     </key>
@@ -77,7 +80,7 @@
       <recent name="basis" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ShortestPathTest">
+  <component name="RunManager" selected="Application.ui.MainApplication">
     <configuration name="ui.MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.MainApplication" />
       <module name="SELAB1" />
@@ -168,8 +171,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ShortestPathTest" />
         <item itemvalue="Application.ui.MainApplication" />
+        <item itemvalue="JUnit.ShortestPathTest" />
         <item itemvalue="JUnit.BridgeTest.testQueryBridgeWords_SingleBridgeWord" />
         <item itemvalue="JUnit.BridgeTest" />
         <item itemvalue="JUnit.BridgeTest.testQueryBridgeWords_MultiBridgeWords" />
@@ -219,8 +222,8 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest.ic" NAME="ShortestPathTest Coverage Results" MODIFIED="1717932506000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>basis.ShortestPath</FILTER>
+    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest.ic" NAME="ShortestPathTest Coverage Results" MODIFIED="1718117123608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/SELAB1$BridgeTest_testQueryBridgeWords_Word1Null.ic" NAME="BridgeTest.testQueryBridgeWords_Word1Null Coverage Results" MODIFIED="1718029815266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>test.*</FILTER>

@@ -1,13 +1,17 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
+
 import basis.Bridge;
 import basis.Graph;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 
-
+/**
+ * 针对 public String queryBridgeWords(String word1, String word2)
+ * 方法的白盒测试.
+ */
 public class BridgeTest {
   private Bridge bridgeTestGraph;
 
@@ -42,13 +46,13 @@ public class BridgeTest {
     String result = bridgeTestGraph.queryBridgeWords("apple", null);
     assertEquals("word2 is null!", result);
   }
-  
+
   @Test
   public void testQueryBridgeWords_BothWordsNull() {
     String result = bridgeTestGraph.queryBridgeWords(null, null);
     assertEquals("word1 and word2 are null!", result);
   }
-  
+
   @Test
   public void testQueryBridgeWords_BothWordsNotInGraph() {
     String result = bridgeTestGraph.queryBridgeWords("kiwi", "mango");
@@ -78,12 +82,13 @@ public class BridgeTest {
     String result = bridgeTestGraph.queryBridgeWords("apple", "grape");
     assertEquals("The bridge words from \"apple\" to \"grape\" is: \"banana\".", result);
   }
-  
+
   @Test
   public void testQueryBridgeWords_MultiBridgeWords() {
     String result = bridgeTestGraph.queryBridgeWords("apple", "peer");
-    assertEquals("The bridge words from \"apple\" to \"peer\" are: \"banana\", \"orange\".", result);
+    assertEquals("The bridge words from \"apple\" to \"peer\" are:"
+        + " \"banana\", \"orange\".", result);
   }
 
-  
+
 }
