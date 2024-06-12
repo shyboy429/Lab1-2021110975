@@ -3,9 +3,11 @@ package basis;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -71,10 +73,11 @@ public class GraphGenerate {
     try (
         // Create input stream with explicit charset
         BufferedReader bufferedReader = new BufferedReader(
-            new FileReader(inputPath.toFile()));
+            new InputStreamReader(new FileInputStream(inputPath.toFile()), StandardCharsets.UTF_8));
         // Create output stream with explicit charset
         BufferedWriter bufferedWriter = new BufferedWriter(
-            new FileWriter(outputPath.toFile()))
+            new OutputStreamWriter(
+                new FileOutputStream(outputPath.toFile()), StandardCharsets.UTF_8))
     ) {
       // Read and process the input file content
       String line;
@@ -100,7 +103,7 @@ public class GraphGenerate {
   private static Graph privateGenGraph(Path filePath) {
     Graph graph = new Graph();
     try (Scanner scan = new Scanner(
-        new FileInputStream(filePath.toFile()))) {
+        new InputStreamReader(new FileInputStream(filePath.toFile()), StandardCharsets.UTF_8))) {
       String preName = null;
       if (scan.hasNext()) {
         preName = scan.next();
@@ -121,4 +124,5 @@ public class GraphGenerate {
     }
     return graph;
   }
+
 }

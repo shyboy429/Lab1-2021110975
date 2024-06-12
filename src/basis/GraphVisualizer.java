@@ -16,15 +16,17 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.SecureRandom;
 import java.util.List;
-import java.util.Random;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  * GraphVisualizer.
@@ -51,8 +53,12 @@ public class GraphVisualizer extends JFrame {
       "#32CD32"
   };
   // 随机数生成器
-  private static final Random random = new Random();
   public mxGraph mxGraph = new mxGraph();
+  private static final SecureRandom secureRandom = new SecureRandom();
+
+  public static int getSecureRandomNumber(int bound) {
+    return secureRandom.nextInt(bound);
+  }
 
   /**
    * Graph visualizer.
@@ -71,11 +77,10 @@ public class GraphVisualizer extends JFrame {
     this.mxGraph.getModel().beginUpdate();
     try {
       // 遍历图中的每个顶点
-      Random rand = new Random();
       for (Vertex v : graph.getVertices()) {
         // 在图中插入一个顶点，并获取顶点对象
-        int x = rand.nextInt(900);
-        int y = rand.nextInt(1000);
+        int x = getSecureRandomNumber(900);
+        int y = getSecureRandomNumber(1000);
         Object vertex = findVertexByName(this.mxGraph, v.getName());
         if (vertex == null) {
           int wordLength = v.getName().length();
@@ -104,8 +109,8 @@ public class GraphVisualizer extends JFrame {
         // 遍历当前顶点的每个邻居
         for (Vertex next : v.getNextvSet()) {
           // 判断邻居是否已经存在于图中
-          int k = rand.nextInt(900);
-          int z = rand.nextInt(1000);
+          int k = getSecureRandomNumber(900);
+          int z = getSecureRandomNumber(1000);
           Object neighvertex = findVertexByName(this.mxGraph, next.getName());
           if (neighvertex == null) {
             int wordLength = next.getName().length();
@@ -215,7 +220,7 @@ public class GraphVisualizer extends JFrame {
   // 生成随机颜色代码字符串
   public static String generateColorCode() {
     // 从颜色数组中随机选择一种颜色
-    return colors[random.nextInt(colors.length)];
+    return colors[getSecureRandomNumber(colors.length)];
   }
 
   private Object findVertexByName(mxGraph graph, String name) {
@@ -227,7 +232,14 @@ public class GraphVisualizer extends JFrame {
     }
     return null;
   }
-  
+
+  /**
+   * 高亮最短路径.
+   *
+   * @param sourceNodeName sourceNodeName
+   * @param targetNodeName targetNodeName
+   * @param color          color
+   */
   public void highlightEdges(String sourceNodeName, String targetNodeName, String color) {
     // 遍历图中所有的边
     Object[] edges = this.mxGraph.getChildEdges(this.mxGraph.getDefaultParent());
@@ -245,42 +257,47 @@ public class GraphVisualizer extends JFrame {
     }
   }
 
+
   private void saveGraphAsImage(mxGraphComponent graphComponent) {
     JFileChooser fileChooser = new JFileChooser();
     fileChooser.setDialogTitle("Save Graph as Image");
     fileChooser.setFileFilter(new FileNameExtensionFilter("PNG Image", "png"));
-    // 设置初始路径为 C:\Users\86139\Desktop
-    fileChooser.setCurrentDirectory(new File("C:\\Users\\86139\\Desktop"));
-
-    // 预设文件名为 "untitled.png"
     fileChooser.setSelectedFile(new File("untitled.png"));
     int userSelection = fileChooser.showSaveDialog(this);
 
     if (userSelection == JFileChooser.APPROVE_OPTION) {
       File fileToSave = fileChooser.getSelectedFile();
-      String filePath = fileToSave.getAbsolutePath();
+      String filePath = FilenameUtils.getName(fileToSave.getName());
       if (!filePath.toLowerCase().endsWith(".png")) {
         filePath += ".png";
       }
 
-      // 设置图组件的尺寸以确保所有内容都在绘制范围内
+      // 限定保存路径到当前用户目录
+      Path safeDir = Paths.get(System.getProperty("user.home"), "safe_dir");
+      File safeDirFile = safeDir.toFile();
+      if (!safeDirFile.exists()) {
+        //safeDirFile.mkdirs();
+        return;
+      }
+
+      Path safePath = safeDir.resolve(filePath);
+      File safeFile = safePath.toFile();
+
       Dimension size = graphComponent.getGraphControl().getSize();
       BufferedImage image = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
       Graphics2D g2 = image.createGraphics();
 
-      // 先填充白色背景
       g2.setColor(Color.WHITE);
       g2.fillRect(0, 0, size.width, size.height);
 
-      // 绘制图组件
       graphComponent.getGraphControl().paint(g2);
       g2.dispose();
 
       try {
-        ImageIO.write(image, "png", new File(filePath));
-        System.out.println("Graph saved as " + filePath);
+        ImageIO.write(image, "png", safeFile);
+        System.out.println("Graph saved as " + safeFile.getAbsolutePath());
       } catch (IOException e) {
-        logger.log(Level.SEVERE, "An exception occurred", e);
+        e.printStackTrace();
       }
     }
   }

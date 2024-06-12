@@ -1,14 +1,22 @@
 package ui;
+
+import basis.Bridge;
+import basis.Graph;
+import basis.GraphGenerate;
+import basis.GraphVisualizer;
+import basis.RandomWalk;
+import basis.ShortestPath;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import basis.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +29,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.io.FilenameUtils;
 
+
+/**
+ * 前端控制器.
+ */
 public class BaseWindowController {
 
   private static final Logger logger = Logger.getLogger(BaseWindowController.class.getName());
@@ -61,7 +74,7 @@ public class BaseWindowController {
     FileChooser fileChooser = new FileChooser(); // 文件选择器
 
     fileChooser.setTitle("打开文件"); // 设置窗口标题
-    fileChooser.setInitialDirectory(new File("C:\\Users\\86139\\Desktop\\SELAB1")); // 设置初始路径
+    //fileChooser.setInitialDirectory(new File("C:\\Users\\86139\\Desktop\\SELAB1")); // 设置初始路径
     // 设置文件格式过滤器
     fileChooser.getExtensionFilters().addAll(
         new FileChooser.ExtensionFilter("文本文档", "*.txt"),
@@ -69,7 +82,7 @@ public class BaseWindowController {
     File file = fileChooser.showOpenDialog(stage); // 打开文件选择对话框
     // 记录选择的文件对象
     if (file != null) {
-      try (Scanner scan = new Scanner(file)) {
+      try (Scanner scan = new Scanner(file, StandardCharsets.UTF_8.name())) {
         String content = scan.useDelimiter("\\Z").next(); // 读取文件全部内容
         this.content = content;
         console.setText(content); // 将内容显示到控制台
@@ -104,12 +117,25 @@ public class BaseWindowController {
 
   @FXML
   protected void handdleTextButtonClicked() {
-    String filepath = this.filepath + ".txt";
-    try (Scanner scanner = new Scanner(new File(filepath))) {
+    // Extract the filename from the input path
+    String safeFilename = FilenameUtils.getName(this.filepath + ".txt");
+
+    // Define a safe directory
+    Path safeDir = Paths.get(System.getProperty("user.home"), "\\Desktop\\SELAB1");
+    if (!safeDir.toFile().exists()) {
+      //safeDir.toFile().mkdirs();
+      return;
+    }
+
+    // Construct the full safe path
+    Path safePath = safeDir.resolve(safeFilename);
+
+    try (Scanner scanner = new Scanner(safePath.toFile(), StandardCharsets.UTF_8.name())) {
       this.content = scanner.useDelimiter("\\Z").next();
     } catch (FileNotFoundException err) {
       logger.log(Level.SEVERE, "An exception occurred", err);
     }
+
     console.setText(this.content);
   }
 

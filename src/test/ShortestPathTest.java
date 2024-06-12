@@ -7,6 +7,9 @@ import basis.Graph;
 import basis.ShortestPath;
 import org.junit.Test;
 
+/**
+ * 最短路径算法黑盒测试.
+ */
 public class ShortestPathTest {
 
   @Test
@@ -61,14 +64,14 @@ public class ShortestPathTest {
         + "banana->date", result);
   }
 
-//  @Test
-//  public void testFirstWordCountOne() {
-//    Graph graph = createSampleGraph();
-//    ShortestPath shortestPath = new ShortestPath(graph);
-//    String result = shortestPath.calcShortestPath("apple", "banana");
-//    System.out.println("测试第一个单词的个数为1: " + result);
-//    assertTrue(result.contains("apple->banana"));
-//  }
+  //  @Test
+  //  public void testFirstWordCountOne() {
+  //    Graph graph = createSampleGraph();
+  //    ShortestPath shortestPath = new ShortestPath(graph);
+  //    String result = shortestPath.calcShortestPath("apple", "banana");
+  //    System.out.println("测试第一个单词的个数为1: " + result);
+  //    assertTrue(result.contains("apple->banana"));
+  //  }
 
   @Test
   public void testFirstWordCountMultiple() {
@@ -95,14 +98,14 @@ public class ShortestPathTest {
         + "banana->date", result);
   }
 
-//  @Test
-//  public void testSecondWordCountOne() {
-//    Graph graph = createSampleGraph();
-//    ShortestPath shortestPath = new ShortestPath(graph);
-//    String result = shortestPath.calcShortestPath("apple", "banana");
-//    System.out.println("测试第二个单词的个数为1: " + result);
-//    assertTrue(result.contains("apple->banana"));
-//  }
+  //  @Test
+  //  public void testSecondWordCountOne() {
+  //    Graph graph = createSampleGraph();
+  //    ShortestPath shortestPath = new ShortestPath(graph);
+  //    String result = shortestPath.calcShortestPath("apple", "banana");
+  //    System.out.println("测试第二个单词的个数为1: " + result);
+  //    assertTrue(result.contains("apple->banana"));
+  //  }
 
   @Test
   public void testSecondWordCountMultiple() {

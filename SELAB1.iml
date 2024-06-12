@@ -30,5 +30,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="commons-io-2.16" level="project" />
+    <orderEntry type="library" name="commons-io-2.16.1-test-sources" level="project" />
   </component>
 </module>
