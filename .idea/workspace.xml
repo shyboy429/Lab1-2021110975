@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004d8679-bf32-43f7-826c-455ebd2929d3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/GraphVisualizer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SELAB1/basis/GraphVisualizer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/GraphVisualizer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SELAB1/basis/GraphVisualizer$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SELAB1/basis/GraphVisualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SELAB1/basis/GraphVisualizer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/path.txt" beforeDir="false" afterPath="$PROJECT_DIR$/path.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/basis/GraphGenerate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/GraphGenerate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/basis/GraphVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/basis/GraphVisualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/BaseWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/BaseWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/ShortestPathTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ShortestPathTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,28 +43,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "last_opened_file_path": "C:/Program Files/Java/JDK/commons-io-2.16.1-bin/commons-io-2.16.1/commons-io-2.16.1.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.26143143",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Java/JDK/commons-io-2.16.1-bin/commons-io-2.16.1/commons-io-2.16.1.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.26143143&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\86139\Desktop\SELAB1\src\basis" />
@@ -88,7 +82,7 @@
       <recent name="basis" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ui.MainApplication">
+  <component name="RunManager" selected="JUnit.ShortestPathTest">
     <configuration name="ui.MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.MainApplication" />
       <module name="SELAB1" />
@@ -179,10 +173,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ui.MainApplication" />
         <item itemvalue="JUnit.ShortestPathTest" />
-        <item itemvalue="JUnit.BridgeTest.testQueryBridgeWords_SingleBridgeWord" />
         <item itemvalue="JUnit.BridgeTest" />
+        <item itemvalue="Application.ui.MainApplication" />
+        <item itemvalue="JUnit.BridgeTest.testQueryBridgeWords_SingleBridgeWord" />
         <item itemvalue="JUnit.BridgeTest.testQueryBridgeWords_MultiBridgeWords" />
       </list>
     </recent_temporary>
@@ -208,7 +202,9 @@
       <workItem from="1718032210030" duration="470000" />
       <workItem from="1718093712856" duration="961000" />
       <workItem from="1718112890978" duration="964000" />
-      <workItem from="1718173974526" duration="5385000" />
+      <workItem from="1718173974526" duration="5659000" />
+      <workItem from="1718182738987" duration="571000" />
+      <workItem from="1718236661183" duration="5173000" />
     </task>
     <servers />
   </component>
@@ -231,7 +227,7 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest.ic" NAME="ShortestPathTest Coverage Results" MODIFIED="1718117123608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest.ic" NAME="ShortestPathTest Coverage Results" MODIFIED="1718237006975" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>test.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/SELAB1$BridgeTest_testQueryBridgeWords_Word1Null.ic" NAME="BridgeTest.testQueryBridgeWords_Word1Null Coverage Results" MODIFIED="1718029815266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -247,7 +243,7 @@
     <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest_testStartWordNotInGraph.ic" NAME="ShortestPathTest.testStartWordNotInGraph Coverage Results" MODIFIED="1717931068892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>test.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/SELAB1$BridgeTest.ic" NAME="BridgeTest Coverage Results" MODIFIED="1718030609770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/SELAB1$BridgeTest.ic" NAME="BridgeTest Coverage Results" MODIFIED="1718238051491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>basis.Bridge</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/SELAB1$ShortestPathTest_testMultiShortestPathTest.ic" NAME="ShortestPathTest.testMultiShortestPathTest Coverage Results" MODIFIED="1717931751636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

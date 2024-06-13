@@ -115,7 +115,22 @@ public class ShortestPathTest {
     System.out.println("测试第二个单词的个数为多个: " + result);
     assertEquals("Invalid input! Word2 contains Spaces", result);
   }
-
+  @Test
+  public void testBothWordCountMultiple() {
+    Graph graph = createSampleGraph();
+    ShortestPath shortestPath = new ShortestPath(graph);
+    String result = shortestPath.calcShortestPath("apple banana", "apple banana");
+    System.out.println("测试两个输入框单词的个数为多个: " + result);
+    assertEquals("Invalid input! Word1 and word2 contains Spaces", result);
+  }
+  @Test
+  public void testBothnull() {
+    Graph graph = createSampleGraph();
+    ShortestPath shortestPath = new ShortestPath(graph);
+    String result = shortestPath.calcShortestPath(null, null);
+    System.out.println("测试两个单词都为空: " + result);
+    assertEquals("Invalid start and end points!", result);
+  }
   // 辅助方法，用于创建测试用的样本图。
   private Graph createSampleGraph() {
     Graph graph = new Graph();
